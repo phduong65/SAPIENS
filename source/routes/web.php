@@ -56,4 +56,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     // Events
     Route::resource('events', Admin\EventController::class)->except(['create', 'edit', 'show']);
+
+    // Translations (controller created in Task 10)
+    Route::get('/translations', [Admin\TranslationController::class, 'index'])->name('translations.index');
+    Route::post('/translations', [Admin\TranslationController::class, 'update'])->name('translations.update');
+
+    // Settings (controller created in Task 11)
+    Route::get('/settings', [Admin\SettingController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [Admin\SettingController::class, 'update'])->name('settings.update');
 });
