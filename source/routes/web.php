@@ -5,6 +5,9 @@ use App\Http\Controllers\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+// ─── Locale Switching ────────────────────────────────────────────────────────
+Route::post('/locale', [\App\Http\Controllers\LocaleController::class, 'switch'])->name('locale.switch');
+
 // ─── Client Routes ──────────────────────────────────────────────────────────
 Route::get('/', [Client\HomeController::class, 'index'])->name('home');
 Route::get('/about', [Client\AboutController::class, 'index'])->name('about');

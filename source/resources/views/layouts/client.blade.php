@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="loading">
+<html lang="{{ app()->getLocale() }}" class="loading">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
