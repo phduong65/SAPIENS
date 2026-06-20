@@ -94,28 +94,75 @@ function applyTheme(theme) {
     });
 }
 
+// ── i18n: Dictionary-based language switching ───────────────
+var _i18nCache = {};
+
+function loadDictionary(locale) {
+    if (_i18nCache[locale]) {
+        return Promise.resolve(_i18nCache[locale]);
+    }
+    var stored = sessionStorage.getItem('sp.dict.' + locale);
+    if (stored) {
+        try {
+            _i18nCache[locale] = JSON.parse(stored);
+            return Promise.resolve(_i18nCache[locale]);
+        } catch (e) { /* corrupt cache — fetch fresh */ }
+    }
+    return fetch('/translations/' + locale)
+        .then(function (r) { return r.json(); })
+        .then(function (dict) {
+            _i18nCache[locale] = dict;
+            try { sessionStorage.setItem('sp.dict.' + locale, JSON.stringify(dict)); } catch (e) {}
+            return dict;
+        });
+}
+
+function applyDictionary(dict) {
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+            el.textContent = dict[key];
+        }
+    });
+}
+
 function applyLang(lang) {
     document.documentElement.setAttribute('data-lang', lang);
     localStorage.setItem('sp-lang', lang);
 
-    // Swap text content for data-en / data-vi elements
-    document.querySelectorAll('[data-en]').forEach(function(el) {
-        var text = lang === 'vi' ? el.dataset.vi : el.dataset.en;
-        if (text !== undefined) el.textContent = text;
-    });
+    loadDictionary(lang).then(applyDictionary);
 
-    // Update aria-pressed on all lang buttons (desktop + mobile)
-    document.querySelectorAll('.sp-lang-btn').forEach(function(btn) {
+    document.querySelectorAll('.sp-lang-btn').forEach(function (btn) {
         btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
         btn.classList.toggle('active', btn.dataset.lang === lang);
     });
+
+    // Persist to server cookie (background)
+    var token = document.querySelector('meta[name="csrf-token"]');
+    if (token) {
+        fetch('/locale', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token.content,
+            },
+            body: JSON.stringify({ locale: lang }),
+        });
+    }
 }
 
 function initPreferences() {
     var theme = localStorage.getItem('sp-theme') || 'dark';
-    var lang  = localStorage.getItem('sp-lang')  || 'en';
+    // Use server locale as initial lang (from <html lang=""> attr set by LocaleMiddleware)
+    var lang  = document.documentElement.getAttribute('lang') || localStorage.getItem('sp-lang') || 'en';
     applyTheme(theme);
-    applyLang(lang);
+    // Don't fetch dictionary on load — server already rendered correct locale.
+    // Only update button states.
+    document.querySelectorAll('.sp-lang-btn').forEach(function (btn) {
+        btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    localStorage.setItem('sp-lang', lang);
 }
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TranslationString;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class LocaleController extends Controller
 {
@@ -22,5 +25,20 @@ class LocaleController extends Controller
         );
     }
 
-    // Task 6: dictionary() method to be added here
+    public function dictionary(string $locale): JsonResponse
+    {
+        if (! in_array($locale, self::SUPPORTED, true)) {
+            return response()->json(['error' => 'Unsupported locale'], 400);
+        }
+
+        $data = Cache::remember("translations.dict.{$locale}", 3600, function () use ($locale) {
+            return TranslationString::where('group', 'ui')
+                ->where('locale', $locale)
+                ->pluck('value', 'key')
+                ->toArray();
+        });
+
+        return response()->json($data)
+            ->header('Cache-Control', 'public, max-age=3600');
+    }
 }

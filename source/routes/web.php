@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 // ─── Locale Switching ────────────────────────────────────────────────────────
 Route::post('/locale', [\App\Http\Controllers\LocaleController::class, 'switch'])->name('locale.switch');
+Route::get('/translations/{locale}', [\App\Http\Controllers\LocaleController::class, 'dictionary'])->name('translations.dictionary');
 
 // ─── Client Routes ──────────────────────────────────────────────────────────
 Route::get('/', [Client\HomeController::class, 'index'])->name('home');
