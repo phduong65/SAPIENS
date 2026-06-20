@@ -9,7 +9,7 @@
 <section class="pt-36 pb-16 px-6 text-center" style="background:#0A0A08; position:relative; overflow:hidden;">
     <div style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 30%, rgba(184,146,90,0.05) 0%, transparent 70%); pointer-events:none;"></div>
     <p style="color:#B8925A; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:1rem;" class="fade-in-up">
-        {{ __('pages.menu_page.filter_food') }}
+        {{ __('pages.menu_page.label') }}
     </p>
     <h1 class="font-display fade-in-up fade-in-up-delay-1"
         style="font-size:clamp(3rem, 9vw, 6rem); color:#E5D9C8; line-height:0.95; margin-bottom:1.5rem;">

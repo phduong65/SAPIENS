@@ -67,7 +67,7 @@
                 {{-- Guest Info --}}
                 <div class="mb-8">
                     <h3 style="color:#C9B99A; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; padding-bottom:0.75rem; border-bottom:1px solid #2E2E2A;">
-                        {{ __('pages.reservation_page.field_name') }}
+                        {{ __('pages.reservation_page.section_guest_info') }}
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="md:col-span-2">
@@ -91,7 +91,7 @@
                 {{-- Booking Info --}}
                 <div class="mb-8">
                     <h3 style="color:#C9B99A; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; padding-bottom:0.75rem; border-bottom:1px solid #2E2E2A;">
-                        {{ __('pages.reservation_page.bistro_label') }}
+                        {{ __('pages.reservation_page.section_booking_info') }}
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
@@ -119,7 +119,7 @@
                         <div>
                             <label class="form-label">{{ __('pages.reservation_page.field_area') }}</label>
                             <select name="seating_area" class="form-input">
-                                <option value="" style="background:#242420;">{{ __('pages.reservation_page.area_indoor') }}</option>
+                                <option value="" style="background:#242420;">{{ __('pages.reservation_page.area_no_preference') }}</option>
                                 <option value="indoor" style="background:#242420;">{{ __('pages.reservation_page.area_indoor') }}</option>
                                 <option value="outdoor" style="background:#242420;">{{ __('pages.reservation_page.area_outdoor') }}</option>
                                 <option value="bar" style="background:#242420;">{{ __('pages.reservation_page.area_bar') }}</option>
