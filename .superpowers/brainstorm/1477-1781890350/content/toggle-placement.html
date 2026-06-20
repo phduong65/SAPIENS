@@ -1,0 +1,103 @@
+<h2>Toggle Vị Trí — Theme & Language trên Navbar</h2>
+<p class="subtitle">Nút chuyển dark/light và EN/VI đặt ở đâu trên navbar?</p>
+
+<div class="cards">
+
+  <!-- Option A: Cả hai ở góc phải navbar -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0;">
+      <div style="background:#0A0A08; padding:14px 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:Georgia,serif; font-size:11px; letter-spacing:0.15em; color:#C9B99A; text-transform:uppercase;">Sapiens House</span>
+          <div style="display:flex; gap:14px; align-items:center;">
+            <span style="font-size:9px; color:#8C7E6A;">Home</span>
+            <span style="font-size:9px; color:#8C7E6A;">Menu</span>
+            <span style="font-size:9px; color:#8C7E6A;">Story</span>
+            <div style="width:1px; height:14px; background:#2E2E2A;"></div>
+            <!-- Lang toggle -->
+            <div style="display:flex; gap:4px; align-items:center;">
+              <span style="font-size:8px; color:#B8925A; font-weight:600;">EN</span>
+              <span style="font-size:8px; color:#8C7E6A;">·</span>
+              <span style="font-size:8px; color:#8C7E6A;">VI</span>
+            </div>
+            <!-- Theme toggle icon -->
+            <div style="width:20px; height:20px; border-radius:50%; border:1px solid #2E2E2A; display:flex; align-items:center; justify-content:center;">
+              <span style="font-size:10px;">☀</span>
+            </div>
+            <span style="background:#B8925A; color:#0A0A08; font-size:8px; padding:4px 10px; border-radius:2px; font-weight:500;">Reserve</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Cả hai cạnh nút Reserve</h3>
+      <p>EN·VI và icon sun/moon ngay trước nút Reserve. Gọn gàng, tất cả trong một hàng. Trên mobile ẩn vào burger menu.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Footer + góc phải nhỏ -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0;">
+      <div style="background:#0A0A08; padding:14px 20px; margin-bottom:6px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:Georgia,serif; font-size:11px; letter-spacing:0.15em; color:#C9B99A; text-transform:uppercase;">Sapiens House</span>
+          <div style="display:flex; gap:14px; align-items:center;">
+            <span style="font-size:9px; color:#8C7E6A;">Home</span>
+            <span style="font-size:9px; color:#8C7E6A;">Menu</span>
+            <span style="font-size:9px; color:#8C7E6A;">Story</span>
+            <span style="background:#B8925A; color:#0A0A08; font-size:8px; padding:4px 10px; border-radius:2px; font-weight:500;">Reserve</span>
+          </div>
+        </div>
+      </div>
+      <!-- Fake footer snippet -->
+      <div style="background:#0F0F0D; padding:10px 20px; border-top:1px solid #2E2E2A;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:8px; color:#8C7E6A;">© 2025 Sapiens House</span>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <span style="font-size:8px; color:#B8925A; font-weight:600;">EN</span>
+            <span style="font-size:8px; color:#8C7E6A;">VI</span>
+            <div style="width:1px; height:12px; background:#2E2E2A;"></div>
+            <span style="font-size:9px;">☀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Navbar sạch, toggle ở Footer</h3>
+      <p>Navbar giữ nguyên minimal. Theme và language toggle xuống footer. Không làm rối navbar, nhưng ít visible hơn.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Floating pill bottom-right -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0; position:relative; min-height:120px;">
+      <div style="background:#0A0A08; padding:14px 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-family:Georgia,serif; font-size:11px; letter-spacing:0.15em; color:#C9B99A; text-transform:uppercase;">Sapiens House</span>
+          <div style="display:flex; gap:14px; align-items:center;">
+            <span style="font-size:9px; color:#8C7E6A;">Home</span>
+            <span style="font-size:9px; color:#8C7E6A;">Menu</span>
+            <span style="font-size:9px; color:#8C7E6A;">Story</span>
+            <span style="background:#B8925A; color:#0A0A08; font-size:8px; padding:4px 10px; border-radius:2px; font-weight:500;">Reserve</span>
+          </div>
+        </div>
+        <!-- floating pill simulation -->
+        <div style="margin-top:30px; display:flex; justify-content:flex-end; padding-right:4px;">
+          <div style="display:inline-flex; gap:6px; align-items:center; background:#1A1A18; border:1px solid #2E2E2A; border-radius:20px; padding:5px 12px;">
+            <span style="font-size:8px; color:#B8925A; font-weight:600;">EN</span>
+            <span style="font-size:8px; color:#8C7E6A;">·</span>
+            <span style="font-size:8px; color:#8C7E6A;">VI</span>
+            <div style="width:1px; height:12px; background:#2E2E2A;"></div>
+            <span style="font-size:10px; color:#C9B99A;">☽</span>
+          </div>
+        </div>
+        <div style="font-size:7px; color:#3A3A35; text-align:right; margin-top:4px; padding-right:4px;">← floating pill cố định bottom-right</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Floating Pill cố định góc màn hình</h3>
+      <p>Pill nhỏ nổi <code>position:fixed</code> góc dưới phải. Luôn visible khi scroll, không chiếm không gian navbar. Phong cách premium apps.</p>
+    </div>
+  </div>
+
+</div>

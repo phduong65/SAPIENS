@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from pypdf import PdfReader; r = PdfReader\\('C:/Users/Admin/Downloads/SAPIENS_MENU \\(draft\\).pdf'\\); print\\(f'Pages: {len\\(r.pages\\)}'\\); [print\\(f'--- Page {i+1} ---\\\\n' + r.pages[i].extract_text\\(\\)[:500]\\) for i in range\\(min\\(15, len\\(r.pages\\)\\)\\)]\")",
+      "Bash(python -c \"import pdfplumber; pdf = pdfplumber.open\\('C:/Users/Admin/Downloads/SAPIENS_MENU \\(draft\\).pdf'\\); print\\(len\\(pdf.pages\\)\\); [print\\(f'--- P{i+1} ---\\\\n{pdf.pages[i].extract_text\\(\\)[:600]}'\\) for i in range\\(15\\)]\")",
+      "Bash(python -c ' *)",
+      "PowerShell(if \\(!\\(Test-Path \"D:\\\\SAPIENS\"\\)\\) { New-Item -ItemType Directory -Path \"D:\\\\SAPIENS\" -Force }; ls \"D:\\\\SAPIENS\")",
+      "PowerShell(composer --version)",
+      "PowerShell(php --version)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)"
+    ]
+  }
+}

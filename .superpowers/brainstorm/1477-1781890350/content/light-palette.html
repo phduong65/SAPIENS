@@ -1,0 +1,120 @@
+<h2>Light Mode — Chọn tone nền cho Client Site</h2>
+<p class="subtitle">Khi khách hàng bật sáng, background chính sẽ là màu nào?</p>
+
+<div class="cards">
+
+  <!-- Option A: Cream Warm -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0;">
+      <div style="background:#F5F0E8; padding:20px 16px; border-bottom:1px solid #D4C9B4;">
+        <!-- Fake navbar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <span style="font-family:Georgia,serif; font-size:11px; letter-spacing:0.15em; color:#0A0A08; text-transform:uppercase;">Sapiens House</span>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <span style="font-size:9px; color:#8C7E6A;">Home</span>
+            <span style="font-size:9px; color:#8C7E6A;">Menu</span>
+            <span style="font-size:9px; color:#8C7E6A;">Story</span>
+            <span style="background:#B8925A; color:#F5F0E8; font-size:8px; padding:3px 8px; border-radius:2px;">Reserve</span>
+          </div>
+        </div>
+        <!-- Fake hero snippet -->
+        <div style="text-align:center; padding:16px 0 8px;">
+          <div style="font-family:Georgia,serif; font-size:22px; color:#0A0A08; letter-spacing:0.05em; margin-bottom:6px;">A Modern Cave</div>
+          <div style="font-size:9px; color:#8C7E6A; letter-spacing:0.2em;">FOR MODERN HUMANS</div>
+        </div>
+        <!-- Card sample -->
+        <div style="display:flex; gap:8px; margin-top:14px;">
+          <div style="flex:1; background:#EDE5D8; border-radius:4px; padding:10px; border:1px solid #D4C9B4;">
+            <div style="font-size:8px; color:#0A0A08; font-weight:600; margin-bottom:4px;">Ocean Ruby</div>
+            <div style="font-size:7px; color:#8C7E6A;">Seared Tuna · Sesame</div>
+            <div style="font-size:9px; color:#B8925A; margin-top:6px;">285,000đ</div>
+          </div>
+          <div style="flex:1; background:#EDE5D8; border-radius:4px; padding:10px; border:1px solid #D4C9B4;">
+            <div style="font-size:8px; color:#0A0A08; font-weight:600; margin-bottom:4px;">Hunter's Roll</div>
+            <div style="font-size:7px; color:#8C7E6A;">Beef · Bacon · Cheese</div>
+            <div style="font-size:9px; color:#B8925A; margin-top:6px;">235,000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Cream Ấm (Warm Cream)</h3>
+      <p>Nền <code>#F5F0E8</code> — tông kem ấm áp. Tiếp nối màu sand của brand, cảm giác giấy cũ, sang trọng nhẹ nhàng.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Off-White Cool -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0;">
+      <div style="background:#F8F7F5; padding:20px 16px; border-bottom:1px solid #E0DDD8;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <span style="font-family:Georgia,serif; font-size:11px; letter-spacing:0.15em; color:#0A0A08; text-transform:uppercase;">Sapiens House</span>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <span style="font-size:9px; color:#8C7E6A;">Home</span>
+            <span style="font-size:9px; color:#8C7E6A;">Menu</span>
+            <span style="font-size:9px; color:#8C7E6A;">Story</span>
+            <span style="background:#B8925A; color:#fff; font-size:8px; padding:3px 8px; border-radius:2px;">Reserve</span>
+          </div>
+        </div>
+        <div style="text-align:center; padding:16px 0 8px;">
+          <div style="font-family:Georgia,serif; font-size:22px; color:#0A0A08; letter-spacing:0.05em; margin-bottom:6px;">A Modern Cave</div>
+          <div style="font-size:9px; color:#8C7E6A; letter-spacing:0.2em;">FOR MODERN HUMANS</div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:14px;">
+          <div style="flex:1; background:#EEECEA; border-radius:4px; padding:10px; border:1px solid #D8D4CF;">
+            <div style="font-size:8px; color:#0A0A08; font-weight:600; margin-bottom:4px;">Ocean Ruby</div>
+            <div style="font-size:7px; color:#8C7E6A;">Seared Tuna · Sesame</div>
+            <div style="font-size:9px; color:#B8925A; margin-top:6px;">285,000đ</div>
+          </div>
+          <div style="flex:1; background:#EEECEA; border-radius:4px; padding:10px; border:1px solid #D8D4CF;">
+            <div style="font-size:8px; color:#0A0A08; font-weight:600; margin-bottom:4px;">Hunter's Roll</div>
+            <div style="font-size:7px; color:#8C7E6A;">Beef · Bacon · Cheese</div>
+            <div style="font-size:9px; color:#B8925A; margin-top:6px;">235,000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Off-White Trung Tính</h3>
+      <p>Nền <code>#F8F7F5</code> — trắng hơi xám. Sạch sẽ, hiện đại, đỡ chói hơn trắng tinh. Gold vẫn nổi bật tốt.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Pure White -->
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0;">
+      <div style="background:#FFFFFF; padding:20px 16px; border-bottom:1px solid #E8E8E8;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <span style="font-family:Georgia,serif; font-size:11px; letter-spacing:0.15em; color:#0A0A08; text-transform:uppercase;">Sapiens House</span>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <span style="font-size:9px; color:#8C7E6A;">Home</span>
+            <span style="font-size:9px; color:#8C7E6A;">Menu</span>
+            <span style="font-size:9px; color:#8C7E6A;">Story</span>
+            <span style="background:#B8925A; color:#fff; font-size:8px; padding:3px 8px; border-radius:2px;">Reserve</span>
+          </div>
+        </div>
+        <div style="text-align:center; padding:16px 0 8px;">
+          <div style="font-family:Georgia,serif; font-size:22px; color:#0A0A08; letter-spacing:0.05em; margin-bottom:6px;">A Modern Cave</div>
+          <div style="font-size:9px; color:#8C7E6A; letter-spacing:0.2em;">FOR MODERN HUMANS</div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:14px;">
+          <div style="flex:1; background:#F5F5F5; border-radius:4px; padding:10px; border:1px solid #E0E0E0;">
+            <div style="font-size:8px; color:#0A0A08; font-weight:600; margin-bottom:4px;">Ocean Ruby</div>
+            <div style="font-size:7px; color:#8C7E6A;">Seared Tuna · Sesame</div>
+            <div style="font-size:9px; color:#B8925A; margin-top:6px;">285,000đ</div>
+          </div>
+          <div style="flex:1; background:#F5F5F5; border-radius:4px; padding:10px; border:1px solid #E0E0E0;">
+            <div style="font-size:8px; color:#0A0A08; font-weight:600; margin-bottom:4px;">Hunter's Roll</div>
+            <div style="font-size:7px; color:#8C7E6A;">Beef · Bacon · Cheese</div>
+            <div style="font-size:9px; color:#B8925A; margin-top:6px;">235,000đ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Trắng Tinh (Pure White)</h3>
+      <p>Nền <code>#FFFFFF</code> — tối giản tuyệt đối. Contrast cao nhất, dễ đọc nhất, nhưng có thể mất đi sự ấm áp của brand.</p>
+    </div>
+  </div>
+
+</div>

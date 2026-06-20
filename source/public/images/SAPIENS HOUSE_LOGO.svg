@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" width="320" height="120">
+  <rect width="320" height="120" fill="none"/>
+  <!-- Decorative line above -->
+  <line x1="20" y1="28" x2="300" y2="28" stroke="#B8925A" stroke-width="0.5" opacity="0.6"/>
+  <!-- Brand name -->
+  <text x="160" y="62"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="26"
+        font-weight="normal"
+        fill="#E5D9C8"
+        text-anchor="middle"
+        letter-spacing="8">SAPIENS</text>
+  <text x="160" y="83"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="13"
+        font-weight="normal"
+        fill="#B8925A"
+        text-anchor="middle"
+        letter-spacing="10">HOUSE</text>
+  <!-- Tagline -->
+  <text x="160" y="100"
+        font-family="Arial, sans-serif"
+        font-size="6.5"
+        fill="#8C7E6A"
+        text-anchor="middle"
+        letter-spacing="3">EATERY &amp; DRINKS</text>
+  <!-- Decorative line below -->
+  <line x1="20" y1="108" x2="300" y2="108" stroke="#B8925A" stroke-width="0.5" opacity="0.6"/>
+</svg>

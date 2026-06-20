@@ -1,0 +1,108 @@
+<h2>Admin Panel — Light là chủ đạo, Dark là nhấn</h2>
+<p class="subtitle">Bạn muốn admin panel trông như thế nào? Chọn style phù hợp nhất.</p>
+
+<div class="cards">
+
+  <!-- Option A: White sidebar, gold accents -->
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0;">
+      <div style="display:flex; height:160px; font-size:8px;">
+        <!-- Sidebar -->
+        <div style="width:110px; background:#FAFAF8; border-right:1px solid #E5E0D8; padding:12px 0; flex-shrink:0;">
+          <div style="padding:0 12px 10px; border-bottom:1px solid #E5E0D8; margin-bottom:8px;">
+            <div style="font-family:Georgia,serif; font-size:9px; color:#0A0A08; letter-spacing:0.1em;">SAPIENS HOUSE</div>
+            <div style="font-size:7px; color:#8C7E6A; margin-top:2px;">Admin Panel</div>
+          </div>
+          <div style="padding:0 8px; display:flex; flex-direction:column; gap:2px;">
+            <div style="padding:5px 8px; border-radius:3px; background:#B8925A; color:#fff; display:flex; gap:5px; align-items:center;">
+              <span>▦</span><span style="font-weight:600;">Dashboard</span>
+            </div>
+            <div style="padding:5px 8px; color:#8C7E6A; display:flex; gap:5px; align-items:center;">
+              <span>▤</span><span>Reservations</span>
+            </div>
+            <div style="padding:5px 8px; color:#8C7E6A; display:flex; gap:5px; align-items:center;">
+              <span>≡</span><span>Menu Items</span>
+            </div>
+            <div style="padding:5px 8px; color:#8C7E6A; display:flex; gap:5px; align-items:center;">
+              <span>○</span><span>Events</span>
+            </div>
+          </div>
+        </div>
+        <!-- Main content -->
+        <div style="flex:1; background:#F5F0E8; padding:10px;">
+          <div style="background:#fff; border-radius:4px; padding:8px; border:1px solid #E5E0D8; margin-bottom:8px;">
+            <div style="font-size:7px; color:#8C7E6A; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.1em;">Today's Reservations</div>
+            <div style="font-size:18px; color:#0A0A08; font-weight:600;">12</div>
+          </div>
+          <div style="background:#fff; border-radius:4px; padding:8px; border:1px solid #E5E0D8;">
+            <div style="font-size:7px; color:#8C7E6A; margin-bottom:6px;">Recent</div>
+            <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #F0EBE2;">
+              <span style="color:#0A0A08;">Nguyen Van A</span>
+              <span style="background:#D4A96A22; color:#B8925A; padding:1px 5px; border-radius:10px;">pending</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:4px 0;">
+              <span style="color:#0A0A08;">Tran Thi B</span>
+              <span style="background:#22c55e22; color:#16a34a; padding:1px 5px; border-radius:10px;">confirmed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Sidebar trắng, content cream, gold active</h3>
+      <p>Sidebar nền trắng tinh (<code>#FAFAF8</code>), content area cream (<code>#F5F0E8</code>). Active item sidebar dùng gold fill. Tông sáng hoàn toàn, nhấn bằng gold.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Cave-dark sidebar, white content -->
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:0; overflow:hidden; border-radius:6px 6px 0 0;">
+      <div style="display:flex; height:160px; font-size:8px;">
+        <!-- Sidebar DARK -->
+        <div style="width:110px; background:#0F0F0D; border-right:1px solid #2E2E2A; padding:12px 0; flex-shrink:0;">
+          <div style="padding:0 12px 10px; border-bottom:1px solid #2E2E2A; margin-bottom:8px;">
+            <div style="font-family:Georgia,serif; font-size:9px; color:#C9B99A; letter-spacing:0.1em;">SAPIENS HOUSE</div>
+            <div style="font-size:7px; color:#3A3A35; margin-top:2px;">Admin Panel</div>
+          </div>
+          <div style="padding:0 8px; display:flex; flex-direction:column; gap:2px;">
+            <div style="padding:5px 8px; border-left:2px solid #B8925A; color:#B8925A; display:flex; gap:5px; align-items:center;">
+              <span>▦</span><span style="font-weight:600;">Dashboard</span>
+            </div>
+            <div style="padding:5px 8px; color:#8C7E6A; display:flex; gap:5px; align-items:center;">
+              <span>▤</span><span>Reservations</span>
+            </div>
+            <div style="padding:5px 8px; color:#8C7E6A; display:flex; gap:5px; align-items:center;">
+              <span>≡</span><span>Menu Items</span>
+            </div>
+            <div style="padding:5px 8px; color:#8C7E6A; display:flex; gap:5px; align-items:center;">
+              <span>○</span><span>Events</span>
+            </div>
+          </div>
+        </div>
+        <!-- Main content LIGHT -->
+        <div style="flex:1; background:#F5F0E8; padding:10px;">
+          <div style="background:#fff; border-radius:4px; padding:8px; border:1px solid #E5E0D8; margin-bottom:8px;">
+            <div style="font-size:7px; color:#8C7E6A; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.1em;">Today's Reservations</div>
+            <div style="font-size:18px; color:#0A0A08; font-weight:600;">12</div>
+          </div>
+          <div style="background:#fff; border-radius:4px; padding:8px; border:1px solid #E5E0D8;">
+            <div style="font-size:7px; color:#8C7E6A; margin-bottom:6px;">Recent</div>
+            <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #F0EBE2;">
+              <span style="color:#0A0A08;">Nguyen Van A</span>
+              <span style="background:#D4A96A22; color:#B8925A; padding:1px 5px; border-radius:10px;">pending</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:4px 0;">
+              <span style="color:#0A0A08;">Tran Thi B</span>
+              <span style="background:#22c55e22; color:#16a34a; padding:1px 5px; border-radius:10px;">confirmed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Sidebar tối (cave-dark), content sáng</h3>
+      <p>Sidebar giữ tông tối của brand (<code>#0F0F0D</code>) làm nhấn, content area sáng. Contrast mạnh — dễ phân biệt nav và nội dung.</p>
+    </div>
+  </div>
+
+</div>

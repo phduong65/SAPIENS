@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <rect width="600" height="400" fill="#1A1A18"/>
+  <rect width="600" height="400" fill="none" stroke="#2E2E2A" stroke-width="1"/>
+  <circle cx="300" cy="185" r="40" fill="none" stroke="#3A3A35" stroke-width="1"/>
+  <circle cx="300" cy="185" r="6" fill="#3A3A35"/>
+  <line x1="260" y1="185" x2="340" y2="185" stroke="#3A3A35" stroke-width="1"/>
+  <line x1="300" y1="145" x2="300" y2="225" stroke="#3A3A35" stroke-width="1"/>
+  <text x="300" y="250" font-family="Georgia,serif" font-size="10" fill="#3A3A35"
+        text-anchor="middle" letter-spacing="3" text-transform="uppercase">SAPIENS HOUSE</text>
+</svg>
