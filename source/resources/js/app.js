@@ -109,11 +109,18 @@ function loadDictionary(locale) {
         } catch (e) { /* corrupt cache — fetch fresh */ }
     }
     return fetch('/translations/' + locale)
-        .then(function (r) { return r.json(); })
+        .then(function (r) {
+            if (!r.ok) throw new Error('Translation fetch failed: ' + r.status);
+            return r.json();
+        })
         .then(function (dict) {
             _i18nCache[locale] = dict;
             try { sessionStorage.setItem('sp.dict.' + locale, JSON.stringify(dict)); } catch (e) {}
             return dict;
+        })
+        .catch(function (e) {
+            console.warn('Could not load translations for ' + locale, e);
+            return {};
         });
 }
 
@@ -147,6 +154,8 @@ function applyLang(lang) {
                 'X-CSRF-TOKEN': token.content,
             },
             body: JSON.stringify({ locale: lang }),
+        }).catch(function (e) {
+            console.warn('Failed to persist language preference', e);
         });
     }
 }
