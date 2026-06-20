@@ -43,7 +43,8 @@
                     </td>
                     <td class="adm-td">
                         <div style="display:flex; gap:0.5rem;">
-                            <button onclick="openEditEvent({{ $event->id }}, @json($event->only(['title','type','description','event_date','event_time','is_published']))"
+                            <button onclick="openEditEvent({{ $event->id }}, JSON.parse(this.dataset.event))"
+                                    data-event="{{ json_encode($event->only(['title','type','description','event_date','event_time','is_published'])) }}"
                                     class="adm-btn adm-btn-ghost adm-btn-sm">
                                 Edit
                             </button>
