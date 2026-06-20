@@ -13,7 +13,9 @@ class TranslationController extends Controller
 {
     public function index(Request $request): View
     {
-        $group  = $request->get('group', 'ui');
+        $group = in_array($request->get('group'), ['ui', 'pages', 'emails'], true)
+            ? $request->get('group')
+            : 'ui';
         $groups = ['ui', 'pages', 'emails'];
 
         $keys = TranslationString::where('group', $group)
@@ -38,7 +40,9 @@ class TranslationController extends Controller
 
     public function update(Request $request, TranslationFileGenerator $generator): RedirectResponse
     {
-        $group   = $request->input('group', 'ui');
+        $group = in_array($request->input('group'), ['ui', 'pages', 'emails'], true)
+            ? $request->input('group')
+            : 'ui';
         $entries = $request->input('translations', []);
 
         foreach ($entries as $key => $locales) {

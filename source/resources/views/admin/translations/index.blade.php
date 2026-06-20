@@ -65,7 +65,7 @@
                                 </td>
                                 @foreach($locales as $locale)
                                     <td class="adm-td" style="vertical-align:top;">
-                                        @php $val = $byLocale[$locale]->value ?? ''; @endphp
+                                        @php $val = $byLocale->get($locale)?->value ?? ''; @endphp
                                         @if(strlen($val) > 80)
                                             <textarea name="translations[{{ $key }}][{{ $locale }}]"
                                                       class="adm-input adm-textarea"
