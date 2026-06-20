@@ -8,7 +8,10 @@
       "PowerShell(composer --version)",
       "PowerShell(php --version)",
       "PowerShell(node --version)",
-      "PowerShell(npm --version)"
+      "PowerShell(npm --version)",
+      "PowerShell(Get-Content *)",
+      "Bash(git -C D:\\\\SAPIENS status)",
+      "Bash(git -C D:\\\\SAPIENS diff)"
     ]
   }
 }
