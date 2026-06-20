@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             MenuCategorySeeder::class,
             MenuItemSeeder::class,
+            TranslationSeeder::class,
         ]);
     }
 }
