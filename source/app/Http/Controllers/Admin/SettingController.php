@@ -3,23 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
-/**
- * SettingController — stub placeholder.
- * Full implementation added in Task 11.
- */
 class SettingController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        // TODO: implement in Task 11
-        abort(501, 'Settings panel not yet implemented.');
+        $defaultLocale = Setting::get('default_locale', 'en');
+        return view('admin.settings.index', compact('defaultLocale'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
-        // TODO: implement in Task 11
-        abort(501, 'Settings panel not yet implemented.');
+        $validated = $request->validate([
+            'default_locale' => 'required|in:en,vi',
+        ]);
+
+        Setting::set('default_locale', $validated['default_locale']);
+
+        return redirect()->route('admin.settings.index')
+            ->with('success', 'Settings saved.');
     }
 }

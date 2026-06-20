@@ -5,80 +5,81 @@
 
 @section('content')
 
-<div class="flex items-center justify-between mb-8">
-    <h1 class="font-display" style="font-size:1.75rem; color:#E5D9C8;">Menu Items</h1>
-    <button onclick="document.getElementById('create-modal').style.display='flex'"
-            class="btn-gold text-xs">
+<div class="adm-page-header" style="display:flex; align-items:center; justify-content:space-between;">
+    <h1 class="adm-page-title">Menu Items</h1>
+    <button onclick="document.getElementById('create-modal').style.display='flex'" class="adm-btn adm-btn-primary adm-btn-sm">
         + Add Item
     </button>
 </div>
 
-<div style="background-color:#242420; border:1px solid #2E2E2A;">
-    <div class="overflow-x-auto">
-        <table style="width:100%; border-collapse:collapse;">
+<div class="adm-card">
+    <div class="adm-table-wrap">
+        <table class="adm-table">
             <thead>
-                <tr style="background-color:#1A1A18;">
-                    <th class="admin-th">Image</th>
-                    <th class="admin-th">Name</th>
-                    <th class="admin-th">Category</th>
-                    <th class="admin-th">Price</th>
-                    <th class="admin-th">Featured</th>
-                    <th class="admin-th">Active</th>
-                    <th class="admin-th">Actions</th>
+                <tr>
+                    <th class="adm-th">Image</th>
+                    <th class="adm-th">Name</th>
+                    <th class="adm-th">Category</th>
+                    <th class="adm-th">Price</th>
+                    <th class="adm-th">Featured</th>
+                    <th class="adm-th">Active</th>
+                    <th class="adm-th">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($items as $item)
-                <tr style="border-bottom:1px solid #2E2E2A;">
-                    <td class="admin-td">
+                <tr class="adm-tr">
+                    <td class="adm-td">
                         @if($item->image_path)
-                        <img src="{{ $item->image_url }}" alt="{{ $item->name_en }}"
-                             style="width:48px; height:36px; object-fit:cover; background:#1A1A18;">
+                        <img src="{{ $item->image_url }}" alt="{{ $item->name_en }}" class="adm-thumb">
                         @else
-                        <div style="width:48px; height:36px; background:#1A1A18; display:flex; align-items:center; justify-content:center;">
-                            <span style="color:#3A3A35; font-size:0.6rem;">—</span>
+                        <div class="adm-thumb" style="background:var(--adm-bg); display:flex; align-items:center; justify-content:center;">
+                            <span style="color:var(--adm-border); font-size:0.6rem;">—</span>
                         </div>
                         @endif
                     </td>
-                    <td class="admin-td">
-                        <p style="color:#C9B99A; font-size:0.875rem;">{{ $item->name_en }}</p>
-                        <p style="color:#8C7E6A; font-size:0.75rem;">{{ $item->name_vi }}</p>
+                    <td class="adm-td">
+                        <p style="font-weight:500;">{{ $item->name_en }}</p>
+                        <p style="color:var(--adm-muted); font-size:0.75rem;">{{ $item->name_vi }}</p>
                     </td>
-                    <td class="admin-td" style="color:#8C7E6A; font-size:0.8rem;">{{ $item->category->name ?? '—' }}</td>
-                    <td class="admin-td" style="color:#B8925A; font-size:0.875rem;">{{ $item->formatted_price }}</td>
-                    <td class="admin-td text-center">
-                        <span style="color:{{ $item->is_featured ? '#34d399' : '#3A3A35' }};">
-                            {{ $item->is_featured ? '✓' : '—' }}
-                        </span>
+                    <td class="adm-td" style="color:var(--adm-muted); font-size:0.8rem;">{{ $item->category->name ?? '—' }}</td>
+                    <td class="adm-td">{{ $item->formatted_price }}</td>
+                    <td class="adm-td" style="text-align:center;">
+                        @if($item->is_featured)
+                            <span class="adm-badge adm-badge-blue">Yes</span>
+                        @else
+                            <span style="color:var(--adm-border);">—</span>
+                        @endif
                     </td>
-                    <td class="admin-td text-center">
-                        <span style="color:{{ $item->is_active ? '#34d399' : '#ef4444' }};">
-                            {{ $item->is_active ? '✓' : '✗' }}
-                        </span>
+                    <td class="adm-td" style="text-align:center;">
+                        @if($item->is_active)
+                            <span class="adm-badge adm-badge-ok">Active</span>
+                        @else
+                            <span class="adm-badge adm-badge-err">Off</span>
+                        @endif
                     </td>
-                    <td class="admin-td">
-                        <div class="flex gap-3">
+                    <td class="adm-td">
+                        <div style="display:flex; gap:0.5rem;">
                             <button onclick="openEditModal({{ $item->id }}, @json($item->only(['menu_category_id','name_en','name_vi','description_en','description_vi','price','is_featured','is_active','sort_order']))"
-                                    style="color:#B8925A; font-size:0.75rem; background:none; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em; padding:0;"
-                                    class="hover:underline">
+                                    class="adm-btn adm-btn-ghost adm-btn-sm">
                                 Edit
                             </button>
                             <form method="POST" action="{{ route('admin.menu-items.destroy', $item) }}"
                                   onsubmit="return confirm('Delete {{ addslashes($item->name_en) }}?')">
                                 @csrf @method('DELETE')
-                                <button type="submit"
-                                        style="color:#ef4444; font-size:0.75rem; background:none; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em; padding:0;"
-                                        class="hover:underline">
-                                    Delete
-                                </button>
+                                <button type="submit" class="adm-btn adm-btn-danger adm-btn-sm">Delete</button>
                             </form>
                         </div>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="7" class="admin-td text-center" style="color:#3A3A35; padding:3rem;">
-                        No menu items yet. <button onclick="document.getElementById('create-modal').style.display='flex'" style="color:#B8925A; background:none; border:none; cursor:pointer;" class="hover:underline">Add one.</button>
+                    <td colspan="7" class="adm-td" style="text-align:center; color:var(--adm-muted); padding:3rem;">
+                        No menu items yet.
+                        <button onclick="document.getElementById('create-modal').style.display='flex'"
+                                class="adm-btn adm-btn-ghost adm-btn-sm" style="margin-left:0.5rem;">
+                            Add one.
+                        </button>
                     </td>
                 </tr>
                 @endforelse
@@ -92,51 +93,48 @@
 @endif
 
 {{-- Create Modal --}}
-<div id="create-modal"
-     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1rem;">
-    <div style="background:#242420; border:1px solid #2E2E2A; width:100%; max-width:560px; max-height:90vh; overflow-y:auto; padding:2rem;">
-        <div class="flex justify-between items-center mb-6">
-            <h3 style="color:#E5D9C8; font-size:1.1rem;">Add Menu Item</h3>
+<div id="create-modal" class="adm-modal-backdrop" style="display:none;">
+    <div class="adm-modal">
+        <div class="adm-modal-header">
+            <span class="adm-modal-title">Add Menu Item</span>
             <button onclick="document.getElementById('create-modal').style.display='none'"
-                    style="color:#8C7E6A; background:none; border:none; cursor:pointer; font-size:1.25rem;">✕</button>
+                    class="adm-btn adm-btn-ghost adm-btn-icon" aria-label="Close">✕</button>
         </div>
         <form method="POST" action="{{ route('admin.menu-items.store') }}" enctype="multipart/form-data">
             @csrf
-            @include('admin.menu-items.partials.form', ['item' => null, 'categories' => $categories])
-            <div class="flex gap-3 mt-6">
-                <button type="submit" class="btn-gold text-xs">Save Item</button>
+            <div class="adm-modal-body">
+                @include('admin.menu-items.partials.form', ['item' => null, 'categories' => $categories])
+            </div>
+            <div class="adm-modal-footer">
                 <button type="button" onclick="document.getElementById('create-modal').style.display='none'"
-                        class="btn-outline text-xs">Cancel</button>
+                        class="adm-btn adm-btn-ghost adm-btn-sm">Cancel</button>
+                <button type="submit" class="adm-btn adm-btn-primary adm-btn-sm">Save Item</button>
             </div>
         </form>
     </div>
 </div>
 
 {{-- Edit Modal --}}
-<div id="edit-modal"
-     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1rem;">
-    <div style="background:#242420; border:1px solid #2E2E2A; width:100%; max-width:560px; max-height:90vh; overflow-y:auto; padding:2rem;">
-        <div class="flex justify-between items-center mb-6">
-            <h3 style="color:#E5D9C8; font-size:1.1rem;">Edit Menu Item</h3>
+<div id="edit-modal" class="adm-modal-backdrop" style="display:none;">
+    <div class="adm-modal">
+        <div class="adm-modal-header">
+            <span class="adm-modal-title">Edit Menu Item</span>
             <button onclick="document.getElementById('edit-modal').style.display='none'"
-                    style="color:#8C7E6A; background:none; border:none; cursor:pointer; font-size:1.25rem;">✕</button>
+                    class="adm-btn adm-btn-ghost adm-btn-icon" aria-label="Close">✕</button>
         </div>
         <form id="edit-form" method="POST" enctype="multipart/form-data">
             @csrf @method('PUT')
-            @include('admin.menu-items.partials.form', ['item' => null, 'categories' => $categories])
-            <div class="flex gap-3 mt-6">
-                <button type="submit" class="btn-gold text-xs">Update Item</button>
+            <div class="adm-modal-body">
+                @include('admin.menu-items.partials.form', ['item' => null, 'categories' => $categories])
+            </div>
+            <div class="adm-modal-footer">
                 <button type="button" onclick="document.getElementById('edit-modal').style.display='none'"
-                        class="btn-outline text-xs">Cancel</button>
+                        class="adm-btn adm-btn-ghost adm-btn-sm">Cancel</button>
+                <button type="submit" class="adm-btn adm-btn-primary adm-btn-sm">Update Item</button>
             </div>
         </form>
     </div>
 </div>
-
-<style>
-.admin-th { padding:0.75rem 1rem; color:#8C7E6A; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; text-align:left; font-weight:500; }
-.admin-td { padding:0.875rem 1rem; font-size:0.8125rem; vertical-align:middle; }
-</style>
 
 @push('scripts')
 <script>

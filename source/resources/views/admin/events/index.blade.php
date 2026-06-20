@@ -5,65 +5,61 @@
 
 @section('content')
 
-<div class="flex items-center justify-between mb-8">
-    <h1 class="font-display" style="font-size:1.75rem; color:#E5D9C8;">Events</h1>
-    <button onclick="document.getElementById('create-event-modal').style.display='flex'"
-            class="btn-gold text-xs">
+<div class="adm-page-header" style="display:flex; align-items:center; justify-content:space-between;">
+    <h1 class="adm-page-title">Events</h1>
+    <button onclick="document.getElementById('create-event-modal').style.display='flex'" class="adm-btn adm-btn-primary adm-btn-sm">
         + Add Event
     </button>
 </div>
 
-<div style="background-color:#242420; border:1px solid #2E2E2A;">
-    <div class="overflow-x-auto">
-        <table style="width:100%; border-collapse:collapse;">
+<div class="adm-card">
+    <div class="adm-table-wrap">
+        <table class="adm-table">
             <thead>
-                <tr style="background-color:#1A1A18;">
-                    <th class="admin-th">Title</th>
-                    <th class="admin-th">Type</th>
-                    <th class="admin-th">Date</th>
-                    <th class="admin-th">Time</th>
-                    <th class="admin-th">Published</th>
-                    <th class="admin-th">Actions</th>
+                <tr>
+                    <th class="adm-th">Title</th>
+                    <th class="adm-th">Type</th>
+                    <th class="adm-th">Date</th>
+                    <th class="adm-th">Time</th>
+                    <th class="adm-th">Published</th>
+                    <th class="adm-th">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($events as $event)
-                <tr style="border-bottom:1px solid #2E2E2A;">
-                    <td class="admin-td" style="color:#C9B99A;">{{ $event->title }}</td>
-                    <td class="admin-td">
-                        <span style="color:#B8925A; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;">
-                            {{ $event->type_label }}
-                        </span>
+                <tr class="adm-tr">
+                    <td class="adm-td" style="font-weight:500;">{{ $event->title }}</td>
+                    <td class="adm-td">
+                        <span class="adm-badge adm-badge-blue">{{ $event->type_label }}</span>
                     </td>
-                    <td class="admin-td" style="color:#8C7E6A;">{{ $event->event_date->format('d/m/Y') }}</td>
-                    <td class="admin-td" style="color:#8C7E6A;">{{ $event->event_time }}</td>
-                    <td class="admin-td text-center">
-                        <span style="color:{{ $event->is_published ? '#34d399' : '#3A3A35' }};">
-                            {{ $event->is_published ? 'Published' : 'Draft' }}
-                        </span>
+                    <td class="adm-td">{{ $event->event_date->format('d/m/Y') }}</td>
+                    <td class="adm-td">{{ $event->event_time }}</td>
+                    <td class="adm-td">
+                        @if($event->is_published)
+                            <span class="adm-badge adm-badge-ok">Published</span>
+                        @else
+                            <span class="adm-badge adm-badge-gray">Draft</span>
+                        @endif
                     </td>
-                    <td class="admin-td">
-                        <div class="flex gap-3">
+                    <td class="adm-td">
+                        <div style="display:flex; gap:0.5rem;">
                             <button onclick="openEditEvent({{ $event->id }}, @json($event->only(['title','type','description','event_date','event_time','is_published']))"
-                                    style="color:#B8925A; font-size:0.75rem; background:none; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em; padding:0;"
-                                    class="hover:underline">
+                                    class="adm-btn adm-btn-ghost adm-btn-sm">
                                 Edit
                             </button>
                             <form method="POST" action="{{ route('admin.events.destroy', $event) }}"
                                   onsubmit="return confirm('Delete this event?')">
                                 @csrf @method('DELETE')
-                                <button type="submit"
-                                        style="color:#ef4444; font-size:0.75rem; background:none; border:none; cursor:pointer; text-transform:uppercase; letter-spacing:0.05em; padding:0;"
-                                        class="hover:underline">
-                                    Delete
-                                </button>
+                                <button type="submit" class="adm-btn adm-btn-danger adm-btn-sm">Delete</button>
                             </form>
                         </div>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="admin-td text-center" style="color:#3A3A35; padding:3rem;">No events yet.</td>
+                    <td colspan="6" class="adm-td" style="text-align:center; color:var(--adm-muted); padding:3rem;">
+                        No events yet.
+                    </td>
                 </tr>
                 @endforelse
             </tbody>
@@ -76,51 +72,48 @@
 @endif
 
 {{-- Create Modal --}}
-<div id="create-event-modal"
-     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1rem;">
-    <div style="background:#242420; border:1px solid #2E2E2A; width:100%; max-width:540px; max-height:90vh; overflow-y:auto; padding:2rem;">
-        <div class="flex justify-between items-center mb-6">
-            <h3 style="color:#E5D9C8;">Add Event</h3>
+<div id="create-event-modal" class="adm-modal-backdrop" style="display:none;">
+    <div class="adm-modal">
+        <div class="adm-modal-header">
+            <span class="adm-modal-title">Add Event</span>
             <button onclick="document.getElementById('create-event-modal').style.display='none'"
-                    style="color:#8C7E6A; background:none; border:none; cursor:pointer; font-size:1.25rem;">✕</button>
+                    class="adm-btn adm-btn-ghost adm-btn-icon" aria-label="Close">✕</button>
         </div>
         <form method="POST" action="{{ route('admin.events.store') }}" enctype="multipart/form-data">
             @csrf
-            @include('admin.events.partials.form', ['event' => null])
-            <div class="flex gap-3 mt-6">
-                <button type="submit" class="btn-gold text-xs">Save Event</button>
+            <div class="adm-modal-body">
+                @include('admin.events.partials.form', ['event' => null])
+            </div>
+            <div class="adm-modal-footer">
                 <button type="button" onclick="document.getElementById('create-event-modal').style.display='none'"
-                        class="btn-outline text-xs">Cancel</button>
+                        class="adm-btn adm-btn-ghost adm-btn-sm">Cancel</button>
+                <button type="submit" class="adm-btn adm-btn-primary adm-btn-sm">Save Event</button>
             </div>
         </form>
     </div>
 </div>
 
 {{-- Edit Modal --}}
-<div id="edit-event-modal"
-     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center; padding:1rem;">
-    <div style="background:#242420; border:1px solid #2E2E2A; width:100%; max-width:540px; max-height:90vh; overflow-y:auto; padding:2rem;">
-        <div class="flex justify-between items-center mb-6">
-            <h3 style="color:#E5D9C8;">Edit Event</h3>
+<div id="edit-event-modal" class="adm-modal-backdrop" style="display:none;">
+    <div class="adm-modal">
+        <div class="adm-modal-header">
+            <span class="adm-modal-title">Edit Event</span>
             <button onclick="document.getElementById('edit-event-modal').style.display='none'"
-                    style="color:#8C7E6A; background:none; border:none; cursor:pointer; font-size:1.25rem;">✕</button>
+                    class="adm-btn adm-btn-ghost adm-btn-icon" aria-label="Close">✕</button>
         </div>
         <form id="edit-event-form" method="POST" enctype="multipart/form-data">
             @csrf @method('PUT')
-            @include('admin.events.partials.form', ['event' => null])
-            <div class="flex gap-3 mt-6">
-                <button type="submit" class="btn-gold text-xs">Update Event</button>
+            <div class="adm-modal-body">
+                @include('admin.events.partials.form', ['event' => null])
+            </div>
+            <div class="adm-modal-footer">
                 <button type="button" onclick="document.getElementById('edit-event-modal').style.display='none'"
-                        class="btn-outline text-xs">Cancel</button>
+                        class="adm-btn adm-btn-ghost adm-btn-sm">Cancel</button>
+                <button type="submit" class="adm-btn adm-btn-primary adm-btn-sm">Update Event</button>
             </div>
         </form>
     </div>
 </div>
-
-<style>
-.admin-th { padding:0.75rem 1rem; color:#8C7E6A; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; text-align:left; font-weight:500; }
-.admin-td { padding:0.875rem 1rem; font-size:0.8125rem; vertical-align:middle; }
-</style>
 
 @push('scripts')
 <script>

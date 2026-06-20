@@ -1,63 +1,74 @@
 <div class="grid grid-cols-2 gap-4">
     <div class="col-span-2">
-        <label class="modal-label">Category <span style="color:#B8925A;">*</span></label>
-        <select name="menu_category_id" class="form-input" required>
-            <option value="" style="background:#242420;">Select...</option>
-            @foreach($categories as $cat)
-            <option value="{{ $cat->id }}" style="background:#242420;"
-                    {{ (isset($item) && $item?->menu_category_id == $cat->id) ? 'selected' : '' }}>
-                {{ $cat->name }}
-            </option>
-            @endforeach
-        </select>
+        <div class="adm-form-group">
+            <label class="adm-label">Category <span style="color:var(--adm-danger);">*</span></label>
+            <select name="menu_category_id" class="adm-input adm-select" required>
+                <option value="">Select...</option>
+                @foreach($categories as $cat)
+                <option value="{{ $cat->id }}"
+                        {{ (isset($item) && $item?->menu_category_id == $cat->id) ? 'selected' : '' }}>
+                    {{ $cat->name }}
+                </option>
+                @endforeach
+            </select>
+        </div>
     </div>
     <div>
-        <label class="modal-label">Name (EN) <span style="color:#B8925A;">*</span></label>
-        <input type="text" name="name_en" class="form-input" required
-               value="{{ $item?->name_en ?? old('name_en') }}">
+        <div class="adm-form-group">
+            <label class="adm-label">Name (EN) <span style="color:var(--adm-danger);">*</span></label>
+            <input type="text" name="name_en" class="adm-input" required
+                   value="{{ $item?->name_en ?? old('name_en') }}">
+        </div>
     </div>
     <div>
-        <label class="modal-label">Name (VI) <span style="color:#B8925A;">*</span></label>
-        <input type="text" name="name_vi" class="form-input" required
-               value="{{ $item?->name_vi ?? old('name_vi') }}">
+        <div class="adm-form-group">
+            <label class="adm-label">Name (VI) <span style="color:var(--adm-danger);">*</span></label>
+            <input type="text" name="name_vi" class="adm-input" required
+                   value="{{ $item?->name_vi ?? old('name_vi') }}">
+        </div>
     </div>
     <div>
-        <label class="modal-label">Description (EN)</label>
-        <textarea name="description_en" class="form-input" rows="2">{{ $item?->description_en ?? old('description_en') }}</textarea>
+        <div class="adm-form-group">
+            <label class="adm-label">Description (EN)</label>
+            <textarea name="description_en" class="adm-input adm-textarea" rows="2">{{ $item?->description_en ?? old('description_en') }}</textarea>
+        </div>
     </div>
     <div>
-        <label class="modal-label">Description (VI)</label>
-        <textarea name="description_vi" class="form-input" rows="2">{{ $item?->description_vi ?? old('description_vi') }}</textarea>
+        <div class="adm-form-group">
+            <label class="adm-label">Description (VI)</label>
+            <textarea name="description_vi" class="adm-input adm-textarea" rows="2">{{ $item?->description_vi ?? old('description_vi') }}</textarea>
+        </div>
     </div>
     <div>
-        <label class="modal-label">Price (000đ) <span style="color:#B8925A;">*</span></label>
-        <input type="number" name="price" class="form-input" min="0" required
-               value="{{ $item?->price ?? old('price') }}">
+        <div class="adm-form-group">
+            <label class="adm-label">Price (000đ) <span style="color:var(--adm-danger);">*</span></label>
+            <input type="number" name="price" class="adm-input" min="0" required
+                   value="{{ $item?->price ?? old('price') }}">
+        </div>
     </div>
     <div>
-        <label class="modal-label">Sort Order</label>
-        <input type="number" name="sort_order" class="form-input" min="0"
-               value="{{ $item?->sort_order ?? old('sort_order', 0) }}">
+        <div class="adm-form-group">
+            <label class="adm-label">Sort Order</label>
+            <input type="number" name="sort_order" class="adm-input" min="0"
+                   value="{{ $item?->sort_order ?? old('sort_order', 0) }}">
+        </div>
     </div>
     <div class="col-span-2">
-        <label class="modal-label">Image</label>
-        <input type="file" name="image" accept="image/jpeg,image/png,image/webp"
-               class="form-input" style="padding:0.5rem;">
+        <div class="adm-form-group">
+            <label class="adm-label">Image</label>
+            <input type="file" name="image" accept="image/jpeg,image/png,image/webp" class="adm-input" style="padding:0.4rem 0.75rem;">
+        </div>
     </div>
-    <div class="flex items-center gap-2">
+    <div style="display:flex; align-items:center; gap:0.5rem;">
         <input type="checkbox" name="is_featured" id="feat_{{ $item?->id ?? 'new' }}"
-               value="1" style="accent-color:#B8925A;"
+               class="adm-checkbox" value="1"
                {{ $item?->is_featured ? 'checked' : '' }}>
-        <label for="feat_{{ $item?->id ?? 'new' }}" class="modal-label" style="margin:0; cursor:pointer;">Featured</label>
+        <label for="feat_{{ $item?->id ?? 'new' }}" class="adm-label" style="margin:0; cursor:pointer;">Featured</label>
     </div>
-    <div class="flex items-center gap-2">
+    <div style="display:flex; align-items:center; gap:0.5rem;">
         <input type="checkbox" name="is_active" id="act_{{ $item?->id ?? 'new' }}"
-               value="1" style="accent-color:#B8925A;"
+               class="adm-checkbox" value="1"
                {{ ($item === null || $item->is_active) ? 'checked' : '' }}>
-        <label for="act_{{ $item?->id ?? 'new' }}" class="modal-label" style="margin:0; cursor:pointer;">Active</label>
+        <label for="act_{{ $item?->id ?? 'new' }}" class="adm-label" style="margin:0; cursor:pointer;">Active</label>
     </div>
 </div>
-
-<style>
-.modal-label { display:block; color:#8C7E6A; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem; }
-</style>
