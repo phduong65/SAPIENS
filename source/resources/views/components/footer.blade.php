@@ -9,16 +9,15 @@
                      class="h-14 w-auto mb-4"
                      loading="lazy">
                 <p style="color:#8C7E6A; font-size:0.8125rem; line-height:1.7; letter-spacing:0.05em;">
-                    A Modern Cave for Modern Humans
+                    {{ __('ui.footer.slogan') }}
                 </p>
             </div>
 
             {{-- Contact --}}
             <div>
-                <h4 class="font-display text-sm mb-5" style="color:#C9B99A; letter-spacing:0.15em; text-transform:uppercase;"
-                    data-en="Find Us" data-vi="Tìm Chúng Tôi">
-                    Find Us
-                </h4>
+                <h4 class="font-display text-sm mb-5"
+                    style="color:#C9B99A; letter-spacing:0.15em; text-transform:uppercase;"
+                    data-i18n="footer.find_us">{{ __('ui.footer.find_us') }}</h4>
                 <address class="not-italic" style="color:#8C7E6A; font-size:0.8125rem; line-height:2;">
                     <p>Tầng 4, 44 Nguyễn Huệ</p>
                     <p>Quận 1, TP.HCM</p>
@@ -40,21 +39,16 @@
 
             {{-- Hours --}}
             <div>
-                <h4 class="font-display text-sm mb-5" style="color:#C9B99A; letter-spacing:0.15em; text-transform:uppercase;"
-                    data-en="Hours" data-vi="Giờ Mở Cửa">
-                    Hours
-                </h4>
+                <h4 class="font-display text-sm mb-5"
+                    style="color:#C9B99A; letter-spacing:0.15em; text-transform:uppercase;"
+                    data-i18n="footer.hours">{{ __('ui.footer.hours') }}</h4>
                 <div style="color:#8C7E6A; font-size:0.8125rem; line-height:2.2;">
                     <p style="color:#C9B99A; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.25rem;"
-                       data-en="Working Space" data-vi="Không Gian Làm Việc">
-                        Working Space
-                    </p>
-                    <p>Mon – Sun &nbsp; 11:00 – 17:00</p>
+                       data-i18n="footer.working_space">{{ __('ui.footer.working_space') }}</p>
+                    <p>{{ __('ui.footer.ws_hours') }}</p>
                     <p style="color:#C9B99A; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; margin-top:0.75rem; margin-bottom:0.25rem;"
-                       data-en="Bistro Bar" data-vi="Bistro Bar">
-                        Bistro Bar
-                    </p>
-                    <p>Mon – Sun &nbsp; 18:00 – 01:00</p>
+                       data-i18n="footer.bistro_bar">{{ __('ui.footer.bistro_bar') }}</p>
+                    <p>{{ __('ui.footer.bb_hours') }}</p>
 
                     {{-- Social --}}
                     <div class="flex gap-4 mt-6">
@@ -77,11 +71,11 @@
 
         <div class="flex flex-col md:flex-row justify-between items-center gap-4">
             <p style="color:#3A3A35; font-size:0.7rem; letter-spacing:0.08em;">
-                &copy; {{ date('Y') }} Sapiens House. All rights reserved.
+                {{ __('ui.footer.copyright', ['year' => date('Y')]) }}
             </p>
             <a href="{{ route('login') }}" style="color:#3A3A35; font-size:0.7rem; letter-spacing:0.05em;"
                class="hover:underline">
-                Admin
+                {{ __('ui.footer.admin') }}
             </a>
         </div>
     </div>

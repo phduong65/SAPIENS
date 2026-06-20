@@ -78,20 +78,21 @@
             margin:0.5rem 0 2.5rem;
             opacity:0; transform:translateY(20px);
         ">
-                A Modern Cave for Modern Humans
+                {{ __('pages.hero.tagline') }}
             </p>
 
             {{-- CTAs --}}
             <div id="sp-hero-ctas"
                 style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; opacity:0; transform:translateY(20px);">
                 <a href="{{ route('reservation') }}" class="sp-btn-primary">
-                    <span>Reserve a Table</span>
+                    <span data-i18n="btn.book_table">{{ __('ui.btn.book_table') }}</span>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
                         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
                 </a>
-                <a href="{{ route('menu') }}" class="sp-btn-ghost">Explore Menu</a>
+                <a href="{{ route('menu') }}" class="sp-btn-ghost"
+                   data-i18n="btn.explore_menu">{{ __('ui.btn.explore_menu') }}</a>
             </div>
         </div>
 
@@ -115,20 +116,20 @@
                 <div data-reveal style="padding-top:0.5rem;">
                     <p
                         style="color:#3A3A35; font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; writing-mode:vertical-rl; transform:rotate(180deg); display:inline-block;">
-                        001 · Origin</p>
+                        {{ __('pages.intro.index') }}</p>
                 </div>
 
                 {{-- Right: Text --}}
                 <div data-lines>
                     <p class="font-display sp-intro-label" data-line
                         style="color:#B8925A; font-size:1rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:2rem;">
-                        Born From a Book
+                        {{ __('pages.intro.label') }}
                     </p>
 
                     <h2 class="font-display"
                         style="font-size:clamp(2.2rem, 5vw, 3.8rem); color:#E5D9C8; line-height:1.08; margin-bottom:2.5rem;">
-                        <span data-line style="display:block;">Every great gathering place</span>
-                        <span data-line style="display:block; color:#8C7E6A;">begins with an idea.</span>
+                        <span data-line style="display:block;">{{ __('pages.intro.line_1') }}</span>
+                        <span data-line style="display:block; color:#8C7E6A;">{{ __('pages.intro.line_2') }}</span>
                     </h2>
 
                     <div class="sp-divider"
@@ -137,21 +138,18 @@
 
                     <div style="max-width:560px;">
                         <p data-line style="color:#8C7E6A; font-size:1rem; line-height:1.95; margin-bottom:1.2rem;">
-                            Sapiens House lấy cảm hứng từ cuốn sách <em style="color:#C9B99A;">"Sapiens"</em> của Yuval Noah
-                            Harari — một hành trình qua lịch sử loài người, từ hang động đến nền văn minh.
+                            {{ __('pages.intro.body_1') }}
                         </p>
                         <p data-line style="color:#8C7E6A; font-size:1rem; line-height:1.95; margin-bottom:1.2rem;">
-                            Hàng nghìn năm trước, <span style="color:#C9B99A;">lửa và hang động</span> là nơi con người tụ
-                            họp — kể chuyện, chia sẻ và xây dựng cộng đồng. Đó là nơi văn minh bắt đầu.
+                            {{ __('pages.intro.body_2') }}
                         </p>
                         <p data-line style="color:#8C7E6A; font-size:1rem; line-height:1.95;">
-                            Chúng tôi mang điều đó vào thế kỷ 21: một <span style="color:#C9B99A;">hang động hiện đại</span>
-                            — tối, ấm, bí ẩn, nhưng đầy sức sống và kết nối.
+                            {{ __('pages.intro.body_3') }}
                         </p>
                     </div>
 
                     <div style="margin-top:3rem;" data-reveal>
-                        <a href="{{ route('about') }}" class="sp-btn-ghost">Read Our Story</a>
+                        <a href="{{ route('about') }}" class="sp-btn-ghost">{{ __('pages.intro.cta') }}</a>
                     </div>
                 </div>
             </div>
@@ -235,14 +233,13 @@
                 </div>
 
                 <div class="sp-exp-content">
-                    <div class="sp-exp-time">11:00 — 17:00</div>
-                    <h3 class="font-display sp-exp-title">Working<br>Space</h3>
-                    <p class="sp-exp-desc">Không gian làm việc, gặp gỡ và cà phê. Ánh sáng ấm, âm thanh nhẹ — lý tưởng để
-                        tập trung và sáng tạo.</p>
+                    <div class="sp-exp-time">{{ __('pages.experience.ws_time') }}</div>
+                    <h3 class="font-display sp-exp-title">{{ __('pages.experience.ws_title') }}</h3>
+                    <p class="sp-exp-desc">{{ __('pages.experience.ws_desc') }}</p>
                     <ul class="sp-exp-features">
-                        <li>High-speed WiFi</li>
-                        <li>Specialty Coffee</li>
-                        <li>Light Bites & Lunch</li>
+                        <li>{{ __('pages.experience.ws_feat_1') }}</li>
+                        <li>{{ __('pages.experience.ws_feat_2') }}</li>
+                        <li>{{ __('pages.experience.ws_feat_3') }}</li>
                     </ul>
                 </div>
             </div>
@@ -326,14 +323,13 @@
                 </div>
 
                 <div class="sp-exp-content" style="justify-content:flex-end;">
-                    <div class="sp-exp-time">18:00 — 01:00</div>
-                    <h3 class="font-display sp-exp-title">Bistro<br><span style="color:#B8925A;">Bar</span></h3>
-                    <p class="sp-exp-desc">Ẩm thực fusion Nhật, cocktail thủ công và âm nhạc cuốn hút. Không gian về đêm
-                        cho những cuộc chuyện trò không hồi kết.</p>
+                    <div class="sp-exp-time">{{ __('pages.experience.bb_time') }}</div>
+                    <h3 class="font-display sp-exp-title">{{ __('pages.experience.bb_title') }}</h3>
+                    <p class="sp-exp-desc">{{ __('pages.experience.bb_desc') }}</p>
                     <ul class="sp-exp-features">
-                        <li>Japanese Fusion Cuisine</li>
-                        <li>Craft Cocktails & Sake</li>
-                        <li>Live Music Events</li>
+                        <li>{{ __('pages.experience.bb_feat_1') }}</li>
+                        <li>{{ __('pages.experience.bb_feat_2') }}</li>
+                        <li>{{ __('pages.experience.bb_feat_3') }}</li>
                     </ul>
                 </div>
             </div>
@@ -350,11 +346,11 @@
             <div data-reveal>
                 <p
                     style="color:#B8925A; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:0.75rem;">
-                    From Our Kitchen</p>
+                    {{ __('pages.menu_showcase.label') }}</p>
                 <h2 class="font-display" style="font-size:clamp(2rem,5vw,3.2rem); color:#E5D9C8; line-height:1.05;">
-                    Signature Dishes</h2>
+                    {{ __('pages.menu_showcase.title') }}</h2>
             </div>
-            <a href="{{ route('menu') }}" class="sp-btn-ghost sp-btn-sm" data-reveal>Full Menu →</a>
+            <a href="{{ route('menu') }}" class="sp-btn-ghost sp-btn-sm" data-reveal>{{ __('pages.menu_showcase.cta') }}</a>
         </div>
 
         {{-- Horizontal scroll track --}}
@@ -394,7 +390,7 @@
                         </div>
                     </article>
                 @empty
-                    <div style="padding:4rem; color:#8C7E6A;">Menu coming soon.</div>
+                    <div style="padding:4rem; color:#8C7E6A;">{{ __('pages.menu_showcase.empty') }}</div>
                 @endforelse
 
             </div>
@@ -402,10 +398,9 @@
 
         {{-- Scroll drag hint --}}
         <div class="px-6 lg:px-12 max-w-7xl mx-auto mt-6" data-reveal>
-            <p style="color:#3A3A35; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;">← Drag to explore
-                →</p>
-            <p style="color:#8C7E6A; font-size:0.7rem; margin-top:4px;">Prices in 000 VND · Subject to 10% VAT & 8% service
-                charge</p>
+            <p style="color:#3A3A35; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase;">
+                {{ __('pages.menu_showcase.drag_hint') }}</p>
+            <p style="color:#8C7E6A; font-size:0.7rem; margin-top:4px;">{{ __('pages.menu_showcase.vat_note') }}</p>
         </div>
     </section>
 
@@ -418,25 +413,21 @@
             <div class="text-center mb-16" data-reveal>
                 <p
                     style="color:#B8925A; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:1rem;">
-                    The Vibe</p>
+                    {{ __('pages.vibe.label') }}</p>
                 <h2 class="font-display"
                     style="font-size:clamp(2.5rem, 7vw, 5rem); color:#E5D9C8; line-height:0.95; max-width:700px; margin:0 auto;">
-                    Built for<br><em style="color:#8C7E6A; font-style:italic;">Human Connection</em>
+                    {{ __('pages.vibe.title_1') }}<br><em style="color:#8C7E6A; font-style:italic;">{{ __('pages.vibe.title_2') }}</em>
                 </h2>
             </div>
 
             @php
                 $vibes = [
-                    ['kanji' => '集', 'en' => 'Gather', 'text' => 'Nơi những con người hiện đại tụ họp và kết nối.'],
-                    ['kanji' => '語', 'en' => 'Share', 'text' => 'Chia sẻ bữa ăn, câu chuyện và khoảnh khắc ý nghĩa.'],
-                    ['kanji' => '創', 'en' => 'Create', 'text' => 'Không gian sáng tạo cho những ý tưởng mới.'],
-                    [
-                        'kanji' => '発',
-                        'en' => 'Discover',
-                        'text' => 'Khám phá ẩm thực fusion Nhật và cocktail thủ công.',
-                    ],
-                    ['kanji' => '属', 'en' => 'Belong', 'text' => 'Cảm giác thuộc về — không chỉ là khách hàng.'],
-                    ['kanji' => '進', 'en' => 'Evolve', 'text' => 'Sapiens luôn tiến hóa — đây là nơi khởi đầu.'],
+                    ['kanji' => '集', 'title' => __('pages.vibe.gather_title'), 'text' => __('pages.vibe.gather_text')],
+                    ['kanji' => '語', 'title' => __('pages.vibe.share_title'),  'text' => __('pages.vibe.share_text')],
+                    ['kanji' => '創', 'title' => __('pages.vibe.create_title'), 'text' => __('pages.vibe.create_text')],
+                    ['kanji' => '発', 'title' => __('pages.vibe.discover_title'), 'text' => __('pages.vibe.discover_text')],
+                    ['kanji' => '属', 'title' => __('pages.vibe.belong_title'), 'text' => __('pages.vibe.belong_text')],
+                    ['kanji' => '進', 'title' => __('pages.vibe.evolve_title'), 'text' => __('pages.vibe.evolve_text')],
                 ];
             @endphp
 
@@ -444,7 +435,7 @@
                 @foreach ($vibes as $v)
                     <div class="sp-vibe-card">
                         <div class="sp-vibe-kanji">{{ $v['kanji'] }}</div>
-                        <h4 class="font-display sp-vibe-title">{{ $v['en'] }}</h4>
+                        <h4 class="font-display sp-vibe-title">{{ $v['title'] }}</h4>
                         <p class="sp-vibe-text">{{ $v['text'] }}</p>
                         <div class="sp-vibe-line"></div>
                     </div>
@@ -478,11 +469,11 @@
                     <p
                         style="font-family:'DM Sans',sans-serif; font-size:0.6rem; letter-spacing:0.3em;
                     text-transform:uppercase; color:#B8925A; margin-bottom:0.4rem;">
-                        Bistro Bar</p>
+                        {{ __('pages.gallery.bistro_label') }}</p>
                     <p
                         style="font-family:'PaperCrease',serif; font-size:clamp(1.2rem,2.5vw,1.8rem);
                     color:#E5D9C8; line-height:1.1;">
-                        An Evening<br>Well Spent</p>
+                        {{ __('pages.gallery.bistro_title') }}</p>
                 </div>
             </div>
 
@@ -575,11 +566,11 @@
             data-reveal-slow>
             <p
                 style="color:#B8925A; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:1.5rem;">
-                Join Us Tonight</p>
+                {{ __('pages.reservation_cta.title') }}</p>
 
             <h2 class="font-display"
                 style="font-size:clamp(2.5rem, 7vw, 4rem); color:#E5D9C8; line-height:1.0; margin-bottom:1.2rem;">
-                Reserve Your<br><em style="color:#B8925A; font-style:italic;">Experience</em>
+                {{ __('pages.reservation_cta.sub') }}<br><em style="color:#B8925A; font-style:italic;">{{ __('pages.reservation_cta.btn') }}</em>
             </h2>
 
             <p style="color:#8C7E6A; font-size:0.875rem; letter-spacing:0.1em; margin-bottom:2.5rem; line-height:1.8;">
@@ -589,7 +580,7 @@
             </p>
 
             <a href="{{ route('reservation') }}" class="sp-btn-primary sp-btn-lg">
-                <span>Book a Table</span>
+                <span>{{ __('pages.reservation_cta.btn') }}</span>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M4 9h10M9.5 4.5l4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.2"
                         stroke-linecap="round" stroke-linejoin="round" />

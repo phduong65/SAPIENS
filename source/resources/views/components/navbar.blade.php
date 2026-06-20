@@ -11,18 +11,39 @@
 
         {{-- Desktop links --}}
         <div class="sp-nav-links" role="list">
-            <a href="{{ route('home') }}"      class="sp-nav-link {{ request()->routeIs('home')      ? 'active' : '' }}" role="listitem" data-en="Home"      data-vi="Trang chủ">Home</a>
-            <a href="{{ route('about') }}"     class="sp-nav-link {{ request()->routeIs('about')     ? 'active' : '' }}" role="listitem" data-en="Story"     data-vi="Câu chuyện">Story</a>
-            <a href="{{ route('menu') }}"      class="sp-nav-link {{ request()->routeIs('menu')      ? 'active' : '' }}" role="listitem" data-en="Menu"      data-vi="Thực đơn">Menu</a>
-            <a href="{{ route('community') }}" class="sp-nav-link {{ request()->routeIs('community') ? 'active' : '' }}" role="listitem" data-en="Community" data-vi="Cộng đồng">Community</a>
+            <a href="{{ route('home') }}"
+               class="sp-nav-link {{ request()->routeIs('home') ? 'active' : '' }}"
+               role="listitem"
+               data-i18n="nav.home">{{ __('ui.nav.home') }}</a>
+            <a href="{{ route('about') }}"
+               class="sp-nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
+               role="listitem"
+               data-i18n="nav.story">{{ __('ui.nav.story') }}</a>
+            <a href="{{ route('menu') }}"
+               class="sp-nav-link {{ request()->routeIs('menu') ? 'active' : '' }}"
+               role="listitem"
+               data-i18n="nav.menu">{{ __('ui.nav.menu') }}</a>
+            <a href="{{ route('community') }}"
+               class="sp-nav-link {{ request()->routeIs('community') ? 'active' : '' }}"
+               role="listitem"
+               data-i18n="nav.community">{{ __('ui.nav.community') }}</a>
         </div>
 
-        {{-- Preference toggles --}}
-        <div id="sp-lang-toggle" role="group" aria-label="Language">
-            <button class="sp-lang-btn" data-lang="en" aria-pressed="true">EN</button>
-            <span id="sp-lang-sep" aria-hidden="true">·</span>
-            <button class="sp-lang-btn" data-lang="vi" aria-pressed="false">VI</button>
-        </div>
+        {{-- Language toggle: POST form for progressive enhancement, JS intercepts for instant swap --}}
+        <form method="POST" action="{{ route('locale.switch') }}" style="display:contents">
+            @csrf
+            <div id="sp-lang-toggle" role="group" aria-label="Language">
+                <button type="submit" name="locale" value="en"
+                        class="sp-lang-btn {{ app()->getLocale() === 'en' ? 'active' : '' }}"
+                        aria-pressed="{{ app()->getLocale() === 'en' ? 'true' : 'false' }}"
+                        data-lang="en">EN</button>
+                <span id="sp-lang-sep" aria-hidden="true">·</span>
+                <button type="submit" name="locale" value="vi"
+                        class="sp-lang-btn {{ app()->getLocale() === 'vi' ? 'active' : '' }}"
+                        aria-pressed="{{ app()->getLocale() === 'vi' ? 'true' : 'false' }}"
+                        data-lang="vi">VI</button>
+            </div>
+        </form>
 
         <button id="sp-theme-toggle" aria-label="Toggle theme">
             {{-- Sun: shown when dark mode is active --}}
@@ -39,7 +60,8 @@
         </button>
 
         {{-- CTA --}}
-        <a href="{{ route('reservation') }}" class="sp-nav-cta" data-en="Reserve" data-vi="Đặt bàn">Reserve</a>
+        <a href="{{ route('reservation') }}" class="sp-nav-cta"
+           data-i18n="nav.reserve">{{ __('ui.nav.reserve') }}</a>
 
         {{-- Mobile burger --}}
         <button id="sp-burger" aria-label="Open menu" aria-expanded="false" aria-controls="sp-mobile-menu">
@@ -52,19 +74,29 @@
         <img src="{{ asset('images/sapiens/SAPIENS HOUSE_LOGO_W TEXTURE.png') }}"
              alt="Sapiens House"
              style="width:120px; height:auto; margin-bottom:2rem; opacity:0.8;">
-        <a href="{{ route('home') }}"        class="sp-mobile-link" data-en="Home"          data-vi="Trang chủ">Home</a>
-        <a href="{{ route('about') }}"       class="sp-mobile-link" data-en="Our Story"    data-vi="Câu chuyện">Our Story</a>
-        <a href="{{ route('menu') }}"        class="sp-mobile-link" data-en="Menu"          data-vi="Thực đơn">Menu</a>
-        <a href="{{ route('community') }}"   class="sp-mobile-link" data-en="Community"    data-vi="Cộng đồng">Community</a>
-        <a href="{{ route('reservation') }}" class="sp-mobile-link sp-mobile-cta" data-en="Reserve a Table" data-vi="Đặt một bàn">Reserve a Table</a>
+        <a href="{{ route('home') }}"        class="sp-mobile-link" data-i18n="nav.home">{{ __('ui.nav.home') }}</a>
+        <a href="{{ route('about') }}"       class="sp-mobile-link" data-i18n="nav.our_story">{{ __('ui.nav.our_story') }}</a>
+        <a href="{{ route('menu') }}"        class="sp-mobile-link" data-i18n="nav.menu">{{ __('ui.nav.menu') }}</a>
+        <a href="{{ route('community') }}"   class="sp-mobile-link" data-i18n="nav.community">{{ __('ui.nav.community') }}</a>
+        <a href="{{ route('reservation') }}" class="sp-mobile-link sp-mobile-cta"
+           data-i18n="nav.reserve_table">{{ __('ui.nav.reserve_table') }}</a>
 
         {{-- Mobile preference toggles --}}
         <div id="sp-mobile-toggles">
-            <button class="sp-lang-btn" data-lang="en" aria-pressed="true"
-                    style="font-size:1rem; color:#8C7E6A;">EN</button>
-            <span style="color:#8C7E6A; font-size:1rem;">·</span>
-            <button class="sp-lang-btn" data-lang="vi" aria-pressed="false"
-                    style="font-size:1rem; color:#8C7E6A;">VI</button>
+            <form method="POST" action="{{ route('locale.switch') }}" style="display:contents">
+                @csrf
+                <button type="submit" name="locale" value="en"
+                        class="sp-lang-btn {{ app()->getLocale() === 'en' ? 'active' : '' }}"
+                        aria-pressed="{{ app()->getLocale() === 'en' ? 'true' : 'false' }}"
+                        data-lang="en"
+                        style="font-size:1rem; color:#8C7E6A;">EN</button>
+                <span style="color:#8C7E6A; font-size:1rem;">·</span>
+                <button type="submit" name="locale" value="vi"
+                        class="sp-lang-btn {{ app()->getLocale() === 'vi' ? 'active' : '' }}"
+                        aria-pressed="{{ app()->getLocale() === 'vi' ? 'true' : 'false' }}"
+                        data-lang="vi"
+                        style="font-size:1rem; color:#8C7E6A;">VI</button>
+            </form>
             <span style="color:#2E2E2A; font-size:1rem; margin: 0 0.25rem;">|</span>
             <button id="sp-theme-toggle-mobile" aria-label="Toggle theme"
                     style="background:none; border:none; cursor:pointer; color:#8C7E6A;">

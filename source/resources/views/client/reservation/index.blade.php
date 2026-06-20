@@ -11,31 +11,30 @@
         {{-- Left: Brand info --}}
         <div class="lg:pr-16 lg:sticky lg:top-28 py-8">
             <p style="color:#B8925A; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; margin-bottom:1.5rem;" class="fade-in-up">
-                Reservations
+                {{ __('pages.reservation_page.label') }}
             </p>
             <h1 class="font-display fade-in-up fade-in-up-delay-1"
                 style="font-size:clamp(2.5rem, 6vw, 4rem); color:#E5D9C8; line-height:1.05; margin-bottom:2rem;">
-                Reserve<br>Your Spot
+                {{ __('pages.reservation_page.title') }}
             </h1>
             <div class="divider-gold mb-8" style="width:60px; margin-left:0; background:linear-gradient(to right, #B8925A, transparent);"></div>
 
             <p style="color:#8C7E6A; font-size:0.9rem; line-height:1.9; margin-bottom:2rem;">
-                Điền thông tin bên dưới và chúng tôi sẽ liên hệ xác nhận trong vòng 24 giờ.
-                Yêu cầu đặt bàn cho Bistro Bar (18:00 – 01:00).
+                {{ __('pages.reservation_page.sub') }}
             </p>
 
             <div style="border:1px solid #2E2E2A; padding:1.5rem; margin-bottom:1.5rem;">
                 <p style="color:#C9B99A; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.75rem;">
-                    Bistro Bar
+                    {{ __('pages.reservation_page.bistro_label') }}
                 </p>
-                <p style="color:#8C7E6A; font-size:0.875rem; margin-bottom:0.25rem;">18:00 – 01:00 daily</p>
-                <p style="color:#8C7E6A; font-size:0.875rem;">Tầng 4, 44 Nguyễn Huệ, Q.1</p>
+                <p style="color:#8C7E6A; font-size:0.875rem; margin-bottom:0.25rem;">{{ __('pages.reservation_page.bistro_hours') }}</p>
+                <p style="color:#8C7E6A; font-size:0.875rem;">{{ __('pages.reservation_page.bistro_addr') }}</p>
             </div>
 
             <a href="https://maps.app.goo.gl/U4srxx72PFPQruoP7" target="_blank" rel="noopener"
                style="color:#B8925A; font-size:0.8rem; letter-spacing:0.08em;"
                class="hover:underline">
-                ↗ View on Google Maps
+                {{ __('pages.reservation_page.maps_link') }}
             </a>
         </div>
 
@@ -50,15 +49,14 @@
                         <polyline points="20 6 9 17 4 12"/>
                     </svg>
                 </div>
-                <h3 class="font-display" style="color:#E5D9C8; font-size:1.75rem; margin-bottom:0.75rem;">Đặt Bàn Thành Công!</h3>
+                <h3 class="font-display" style="color:#E5D9C8; font-size:1.75rem; margin-bottom:0.75rem;">{{ __('pages.reservation_page.success_title') }}</h3>
                 <p style="color:#8C7E6A; font-size:0.875rem; line-height:1.7; margin-bottom:0.5rem;">
-                    Chúng tôi đã nhận được yêu cầu đặt bàn của bạn.
+                    {{ __('pages.reservation_page.success_body') }}
                 </p>
                 <p id="reservation-code"
                    style="color:#B8925A; font-size:1rem; font-weight:600; letter-spacing:0.1em; margin-bottom:1rem;"></p>
                 <p style="color:#8C7E6A; font-size:0.8rem;">
-                    Email xác nhận đã được gửi đến hộp thư của bạn.<br>
-                    Chúng tôi sẽ liên hệ xác nhận trong vòng 24 giờ.
+                    {{ __('pages.reservation_page.success_email') }}
                 </p>
             </div>
 
@@ -69,21 +67,21 @@
                 {{-- Guest Info --}}
                 <div class="mb-8">
                     <h3 style="color:#C9B99A; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; padding-bottom:0.75rem; border-bottom:1px solid #2E2E2A;">
-                        Thông Tin Khách
+                        {{ __('pages.reservation_page.field_name') }}
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="md:col-span-2">
-                            <label class="form-label">Họ Tên <span style="color:#B8925A;">*</span></label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_name') }} <span style="color:#B8925A;">*</span></label>
                             <input type="text" name="full_name" class="form-input" placeholder="Nguyễn Văn A" required>
                             <p class="field-error" data-field="full_name"></p>
                         </div>
                         <div>
-                            <label class="form-label">Số Điện Thoại <span style="color:#B8925A;">*</span></label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_phone') }} <span style="color:#B8925A;">*</span></label>
                             <input type="tel" name="phone" class="form-input" placeholder="0912 345 678" required>
                             <p class="field-error" data-field="phone"></p>
                         </div>
                         <div>
-                            <label class="form-label">Email <span style="color:#B8925A;">*</span></label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_email') }} <span style="color:#B8925A;">*</span></label>
                             <input type="email" name="email" class="form-input" placeholder="you@email.com" required>
                             <p class="field-error" data-field="email"></p>
                         </div>
@@ -93,19 +91,19 @@
                 {{-- Booking Info --}}
                 <div class="mb-8">
                     <h3 style="color:#C9B99A; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; padding-bottom:0.75rem; border-bottom:1px solid #2E2E2A;">
-                        Thông Tin Đặt Bàn
+                        {{ __('pages.reservation_page.bistro_label') }}
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="form-label">Ngày <span style="color:#B8925A;">*</span></label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_date') }} <span style="color:#B8925A;">*</span></label>
                             <input type="date" name="reservation_date" class="form-input"
                                    min="{{ date('Y-m-d') }}" required>
                             <p class="field-error" data-field="reservation_date"></p>
                         </div>
                         <div>
-                            <label class="form-label">Giờ <span style="color:#B8925A;">*</span></label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_time') }} <span style="color:#B8925A;">*</span></label>
                             <select name="reservation_time" class="form-input" required>
-                                <option value="" disabled selected style="background:#242420;">Chọn giờ...</option>
+                                <option value="" disabled selected style="background:#242420;">{{ __('pages.reservation_page.time_select') }}</option>
                                 @foreach(['18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30','00:00','00:30'] as $t)
                                 <option value="{{ $t }}" style="background:#242420;">{{ $t }}</option>
                                 @endforeach
@@ -113,18 +111,18 @@
                             <p class="field-error" data-field="reservation_time"></p>
                         </div>
                         <div>
-                            <label class="form-label">Số Khách <span style="color:#B8925A;">*</span></label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_guests') }} <span style="color:#B8925A;">*</span></label>
                             <input type="number" name="guest_count" class="form-input"
                                    placeholder="2" min="1" max="50" required>
                             <p class="field-error" data-field="guest_count"></p>
                         </div>
                         <div>
-                            <label class="form-label">Khu Vực Ngồi</label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_area') }}</label>
                             <select name="seating_area" class="form-input">
-                                <option value="" style="background:#242420;">Không có yêu cầu</option>
-                                <option value="indoor" style="background:#242420;">Indoor</option>
-                                <option value="outdoor" style="background:#242420;">Outdoor</option>
-                                <option value="bar" style="background:#242420;">Bar Counter</option>
+                                <option value="" style="background:#242420;">{{ __('pages.reservation_page.area_indoor') }}</option>
+                                <option value="indoor" style="background:#242420;">{{ __('pages.reservation_page.area_indoor') }}</option>
+                                <option value="outdoor" style="background:#242420;">{{ __('pages.reservation_page.area_outdoor') }}</option>
+                                <option value="bar" style="background:#242420;">{{ __('pages.reservation_page.area_bar') }}</option>
                             </select>
                         </div>
                     </div>
@@ -133,7 +131,7 @@
                 {{-- Notes --}}
                 <div class="mb-8">
                     <h3 style="color:#C9B99A; font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.5rem; padding-bottom:0.75rem; border-bottom:1px solid #2E2E2A;">
-                        Ghi Chú Thêm
+                        {{ __('pages.reservation_page.field_note') }}
                     </h3>
 
                     {{-- Birthday toggle --}}
@@ -142,23 +140,23 @@
                                value="1"
                                style="width:18px; height:18px; accent-color:#B8925A;">
                         <label for="is_birthday" style="color:#C9B99A; font-size:0.875rem; cursor:pointer;">
-                            🎂 Đây là dịp sinh nhật / kỷ niệm đặc biệt
+                            🎂 {{ __('pages.reservation_page.field_birthday') }}
                         </label>
                     </div>
 
                     <div class="grid gap-4">
                         <div>
-                            <label class="form-label">Dị Ứng Thực Phẩm</label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_allergy') }}</label>
                             <input type="text" name="food_allergy" class="form-input"
                                    placeholder="Gluten, hải sản, đậu phộng...">
                         </div>
                         <div>
-                            <label class="form-label">Yêu Cầu Đặc Biệt</label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_special') }}</label>
                             <textarea name="special_request" class="form-input" rows="2"
                                       placeholder="Trang trí bàn, yêu cầu đặc biệt..."></textarea>
                         </div>
                         <div>
-                            <label class="form-label">Ghi Chú Khác</label>
+                            <label class="form-label">{{ __('pages.reservation_page.field_note') }}</label>
                             <textarea name="note" class="form-input" rows="2"
                                       placeholder="Bất kỳ điều gì bạn muốn cho chúng tôi biết..."></textarea>
                         </div>
@@ -171,8 +169,8 @@
                 </div>
 
                 <button type="submit" id="submit-btn" class="btn-gold w-full text-center" style="width:100%; padding:1rem 2rem;">
-                    <span id="submit-text">Confirm Reservation</span>
-                    <span id="submit-loading" style="display:none;">Processing...</span>
+                    <span id="submit-text">{{ __('pages.reservation_page.submit') }}</span>
+                    <span id="submit-loading" style="display:none;">{{ __('pages.reservation_page.submitting') }}</span>
                 </button>
 
                 <p style="color:#3A3A35; font-size:0.7rem; text-align:center; margin-top:1rem; line-height:1.5;">
@@ -255,7 +253,7 @@
 
             if (res.ok && data.success) {
                 form.style.display = 'none';
-                codeEl.textContent = 'Mã đặt bàn: ' + data.code;
+                codeEl.textContent = '{{ __("pages.reservation_page.code_label") }}: ' + data.code;
                 successDiv.style.display = 'block';
                 window.scrollTo({ top: successDiv.offsetTop - 100, behavior: 'smooth' });
             } else if (res.status === 422 && data.errors) {

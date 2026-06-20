@@ -9,22 +9,22 @@
 <section class="pt-36 pb-16 px-6 text-center" style="background:#0A0A08; position:relative; overflow:hidden;">
     <div style="position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 30%, rgba(184,146,90,0.05) 0%, transparent 70%); pointer-events:none;"></div>
     <p style="color:#B8925A; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:1rem;" class="fade-in-up">
-        Thực Đơn
+        {{ __('pages.menu_page.filter_food') }}
     </p>
     <h1 class="font-display fade-in-up fade-in-up-delay-1"
         style="font-size:clamp(3rem, 9vw, 6rem); color:#E5D9C8; line-height:0.95; margin-bottom:1.5rem;">
-        Our Menu
+        {{ __('pages.menu_page.title') }}
     </h1>
     <p style="color:#8C7E6A; font-size:0.75rem; letter-spacing:0.1em; margin-bottom:0;" class="fade-in-up fade-in-up-delay-2">
-        Prices in 000 VND · +10% VAT · +8% Service Charge
+        {{ __('pages.menu_page.vat_note') }}
     </p>
 </section>
 
 {{-- Tab Filter --}}
 <div class="sticky top-[72px] z-40 px-6 py-4 flex justify-center gap-6"
      style="background:rgba(8,8,6,0.95); backdrop-filter:blur(20px); border-bottom:1px solid #1E1E1B;">
-    <button class="menu-tab-btn sp-nav-link text-xs active" data-tab="food">Food</button>
-    <button class="menu-tab-btn sp-nav-link text-xs" data-tab="drink">Drinks</button>
+    <button class="menu-tab-btn sp-nav-link text-xs active" data-tab="food">{{ __('pages.menu_page.filter_food') }}</button>
+    <button class="menu-tab-btn sp-nav-link text-xs" data-tab="drink">{{ __('pages.menu_page.filter_drink') }}</button>
 </div>
 
 {{-- Food Categories --}}
@@ -153,8 +153,8 @@
 
     @if($drinkCategories->every(fn($c) => $c->activeItems->count() === 0))
     <div class="py-32 text-center">
-        <p class="font-display" style="font-size:2rem; color:#3A3A35;">Drinks menu coming soon</p>
-        <p style="color:#3A3A35; font-size:0.8rem; margin-top:0.5rem;">Stay tuned — something's brewing.</p>
+        <p class="font-display" style="font-size:2rem; color:#3A3A35;">{{ __('pages.menu_page.empty') }}</p>
+        <p style="color:#3A3A35; font-size:0.8rem; margin-top:0.5rem;">{{ __('pages.events_page.empty') }}</p>
     </div>
     @endif
 </div>
