@@ -240,7 +240,7 @@
         }
 
         try {
-            const res = await fetch('{{ route("reservation.store") }}', {
+            const res = await fetch('/reservation', {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': csrfToken,
@@ -248,6 +248,19 @@
                 },
                 body: formData,
             });
+
+            if (res.status === 419) {
+                generalError.textContent = 'Phiên làm việc đã hết hạn. Vui lòng tải lại trang và thử lại.';
+                generalError.style.display = 'block';
+                return;
+            }
+
+            const contentType = res.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) {
+                generalError.textContent = 'Lỗi máy chủ. Vui lòng thử lại sau.';
+                generalError.style.display = 'block';
+                return;
+            }
 
             const data = await res.json();
 

@@ -80,6 +80,21 @@
                                 <button type="submit" class="adm-btn adm-btn-danger adm-btn-sm">Cancel</button>
                             </form>
                             @endif
+                            <form method="POST" action="{{ route('admin.reservations.resend-confirmation', $r) }}"
+                                  onsubmit="return confirm('Gửi lại email xác nhận cho {{ $r->code }}?')">
+                                @csrf
+                                <button type="submit" class="adm-btn adm-btn-ghost adm-btn-sm" title="Gửi lại email xác nhận">✉</button>
+                            </form>
+                            <form method="POST" action="{{ route('admin.reservations.send-deposit', $r) }}"
+                                  onsubmit="return confirm('Gửi email đặt cọc cho {{ $r->code }}?{{ $r->deposit_sent_at ? " (Đã gửi lúc " . $r->deposit_sent_at->format("H:i d/m") . ")" : "" }}')">
+                                @csrf
+                                <button type="submit"
+                                        class="adm-btn adm-btn-sm {{ $r->deposit_sent_at ? 'adm-btn-ghost' : 'adm-btn-primary' }}"
+                                        title="{{ $r->deposit_sent_at ? 'Đặt cọc đã gửi ' . $r->deposit_sent_at->format('H:i d/m') : 'Gửi email đặt cọc' }}"
+                                        style="font-size:0.7rem;">
+                                    {{ $r->deposit_sent_at ? '✓ Cọc' : 'Đặt cọc' }}
+                                </button>
+                            </form>
                             @if($r->note || $r->food_allergy || $r->special_request)
                             <button onclick="showNotes({{ $r->id }})" class="adm-btn adm-btn-ghost adm-btn-sm">
                                 Notes

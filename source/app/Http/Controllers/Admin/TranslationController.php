@@ -38,6 +38,33 @@ class TranslationController extends Controller
         return view('admin.translations.index', compact('keys', 'group', 'groups', 'locales'));
     }
 
+    public function addKey(Request $request, TranslationFileGenerator $generator): RedirectResponse
+    {
+        $request->validate([
+            'group'  => 'required|in:ui,pages,emails',
+            'key'    => 'required|string|regex:/^[a-z0-9_.]+$/i|max:120',
+            'values' => 'required|array',
+        ]);
+
+        $group = $request->input('group');
+        $key   = strtolower(trim($request->input('key')));
+
+        foreach ($request->input('values', []) as $locale => $value) {
+            if (!in_array($locale, ['en', 'vi'], true)) {
+                continue;
+            }
+            TranslationString::updateOrCreate(
+                ['group' => $group, 'key' => $key, 'locale' => $locale],
+                ['value' => $value ?? '']
+            );
+        }
+
+        $generator->regenerate($group);
+
+        return redirect()->route('admin.translations.index', ['group' => $group])
+            ->with('success', "Key «{$key}» added and language files regenerated.");
+    }
+
     public function update(Request $request, TranslationFileGenerator $generator): RedirectResponse
     {
         $group = in_array($request->input('group'), ['ui', 'pages', 'emails'], true)

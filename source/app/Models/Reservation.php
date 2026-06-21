@@ -11,14 +11,16 @@ class Reservation extends Model
         'reservation_date', 'reservation_time', 'guest_count',
         'seating_area', 'note', 'food_allergy',
         'is_birthday', 'special_request', 'status',
-        'confirmed_at', 'cancelled_at',
+        'confirmed_at', 'cancelled_at', 'reminder_sent_at', 'deposit_sent_at',
     ];
 
     protected $casts = [
         'reservation_date' => 'date',
         'is_birthday' => 'boolean',
-        'confirmed_at' => 'datetime',
-        'cancelled_at' => 'datetime',
+        'confirmed_at'    => 'datetime',
+        'cancelled_at'    => 'datetime',
+        'reminder_sent_at' => 'datetime',
+        'deposit_sent_at'  => 'datetime',
     ];
 
     public static function generateCode(): string

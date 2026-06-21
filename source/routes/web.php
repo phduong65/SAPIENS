@@ -50,6 +50,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/reservations', [Admin\ReservationController::class, 'index'])->name('reservations.index');
     Route::post('/reservations/{reservation}/confirm', [Admin\ReservationController::class, 'confirm'])->name('reservations.confirm');
     Route::post('/reservations/{reservation}/cancel', [Admin\ReservationController::class, 'cancel'])->name('reservations.cancel');
+    Route::post('/reservations/{reservation}/send-deposit', [Admin\ReservationController::class, 'sendDeposit'])->name('reservations.send-deposit');
+    Route::post('/reservations/{reservation}/resend-confirmation', [Admin\ReservationController::class, 'resendConfirmation'])->name('reservations.resend-confirmation');
 
     // Menu Items
     Route::resource('menu-items', Admin\MenuItemController::class)->except(['create', 'edit', 'show']);
@@ -60,6 +62,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // Translations (controller created in Task 10)
     Route::get('/translations', [Admin\TranslationController::class, 'index'])->name('translations.index');
     Route::post('/translations', [Admin\TranslationController::class, 'update'])->name('translations.update');
+    Route::post('/translations/add-key', [Admin\TranslationController::class, 'addKey'])->name('translations.add-key');
 
     // Settings (controller created in Task 11)
     Route::get('/settings', [Admin\SettingController::class, 'index'])->name('settings.index');

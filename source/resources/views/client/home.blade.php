@@ -92,7 +92,7 @@
                     </svg>
                 </a>
                 <a href="{{ route('menu') }}" class="sp-btn-ghost"
-                   data-i18n="btn.explore_menu">{{ __('ui.btn.explore_menu') }}</a>
+                    data-i18n="btn.explore_menu">{{ __('ui.btn.explore_menu') }}</a>
             </div>
         </div>
 
@@ -350,7 +350,8 @@
                 <h2 class="font-display" style="font-size:clamp(2rem,5vw,3.2rem); color:#E5D9C8; line-height:1.05;">
                     {{ __('pages.menu_showcase.title') }}</h2>
             </div>
-            <a href="{{ route('menu') }}" class="sp-btn-ghost sp-btn-sm" data-reveal>{{ __('pages.menu_showcase.cta') }}</a>
+            <a href="{{ route('menu') }}" class="sp-btn-ghost sp-btn-sm"
+                data-reveal>{{ __('pages.menu_showcase.cta') }}</a>
         </div>
 
         {{-- Horizontal scroll track --}}
@@ -416,16 +417,21 @@
                     {{ __('pages.vibe.label') }}</p>
                 <h2 class="font-display"
                     style="font-size:clamp(2.5rem, 7vw, 5rem); color:#E5D9C8; line-height:0.95; max-width:700px; margin:0 auto;">
-                    {{ __('pages.vibe.title_1') }}<br><em style="color:#8C7E6A; font-style:italic;">{{ __('pages.vibe.title_2') }}</em>
+                    {{ __('pages.vibe.title_1') }}<br><em
+                        style="color:#8C7E6A; font-style:italic;">{{ __('pages.vibe.title_2') }}</em>
                 </h2>
             </div>
 
             @php
                 $vibes = [
                     ['kanji' => '集', 'title' => __('pages.vibe.gather_title'), 'text' => __('pages.vibe.gather_text')],
-                    ['kanji' => '語', 'title' => __('pages.vibe.share_title'),  'text' => __('pages.vibe.share_text')],
+                    ['kanji' => '語', 'title' => __('pages.vibe.share_title'), 'text' => __('pages.vibe.share_text')],
                     ['kanji' => '創', 'title' => __('pages.vibe.create_title'), 'text' => __('pages.vibe.create_text')],
-                    ['kanji' => '発', 'title' => __('pages.vibe.discover_title'), 'text' => __('pages.vibe.discover_text')],
+                    [
+                        'kanji' => '発',
+                        'title' => __('pages.vibe.discover_title'),
+                        'text' => __('pages.vibe.discover_text'),
+                    ],
                     ['kanji' => '属', 'title' => __('pages.vibe.belong_title'), 'text' => __('pages.vibe.belong_text')],
                     ['kanji' => '進', 'title' => __('pages.vibe.evolve_title'), 'text' => __('pages.vibe.evolve_text')],
                 ];
@@ -570,13 +576,14 @@
 
             <h2 class="font-display"
                 style="font-size:clamp(2.5rem, 7vw, 4rem); color:#E5D9C8; line-height:1.0; margin-bottom:1.2rem;">
-                {{ __('pages.reservation_cta.sub') }}<br><em style="color:#B8925A; font-style:italic;">{{ __('pages.reservation_cta.btn') }}</em>
+                {{ __('pages.reservation_cta.sub') }}<br><em
+                    style="color:#B8925A; font-style:italic;">{{ __('pages.reservation_cta.btn') }}</em>
             </h2>
 
             <p style="color:#8C7E6A; font-size:0.875rem; letter-spacing:0.1em; margin-bottom:2.5rem; line-height:1.8;">
-                Tầng 4, 44 Nguyễn Huệ · Quận 1 · TP.HCM<br>
+                {{ __('pages.reservation_cta.address') }}<br>
                 <span style="color:#3A3A35;">——</span><br>
-                Bistro Bar opens at 18:00
+                {{ __('pages.reservation_cta.bistro_open') }}
             </p>
 
             <a href="{{ route('reservation') }}" class="sp-btn-primary sp-btn-lg">
