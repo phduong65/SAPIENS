@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DepositConfirmation;
+use App\Mail\ReservationConfirmation;
+use App\Models\BlockedSlot;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReservationController extends Controller
 {
@@ -21,7 +25,12 @@ class ReservationController extends Controller
 
         $reservations = $query->paginate(20)->withQueryString();
 
-        return view('admin.reservations.index', compact('reservations'));
+        $blockedSlots = BlockedSlot::whereDate('blocked_date', '>=', today()->toDateString())
+            ->orderBy('blocked_date')
+            ->orderBy('blocked_time')
+            ->get();
+
+        return view('admin.reservations.index', compact('reservations', 'blockedSlots'));
     }
 
     public function confirm(Reservation $reservation)
@@ -36,5 +45,26 @@ class ReservationController extends Controller
         $reservation->update(['status' => 'cancelled', 'cancelled_at' => now()]);
 
         return back()->with('success', "Đã huỷ đặt bàn #{$reservation->code}");
+    }
+
+    public function sendDeposit(Reservation $reservation)
+    {
+        try {
+            Mail::to($reservation->email)->send(new DepositConfirmation($reservation));
+            $reservation->update(['deposit_sent_at' => now()]);
+            return back()->with('success', "Đã gửi email đặt cọc cho #{$reservation->code}");
+        } catch (\Throwable $e) {
+            return back()->with('error', "Gửi email thất bại: " . $e->getMessage());
+        }
+    }
+
+    public function resendConfirmation(Reservation $reservation)
+    {
+        try {
+            Mail::to($reservation->email)->send(new ReservationConfirmation($reservation));
+            return back()->with('success', "Đã gửi lại email xác nhận cho #{$reservation->code}");
+        } catch (\Throwable $e) {
+            return back()->with('error', "Gửi email thất bại: " . $e->getMessage());
+        }
     }
 }

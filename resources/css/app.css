@@ -36,25 +36,40 @@ html {
 
 /* ── LIGHT MODE — redefine all vars ──────────────────────────── */
 [data-theme="light"] {
-    --sp-bg:        #F5F0E8;
-    --sp-surface:   #FFFFFF;
-    --sp-mid:       #EDE8E0;
-    --sp-border:    #D4C9B4;
-    --sp-text:      #2A2420;
-    --sp-heading:   #0A0A08;
-    --sp-muted:     #6B5A48;
-    --sp-dim:       #4A3F35;
-    --sp-accent:    #8B6340;
-    --sp-accent-hv: #B8925A;
-    --sp-on-accent: #FFFFFF;
+    --sp-bg:        #EEE9D7;
+    --sp-surface:   #F4F0E3;
+    --sp-mid:       #E3DBCA;
+    --sp-border:    #CFCAAD;  /* was: #D4C9B4 */
+    --sp-text:      #8B3A22;
+    --sp-heading:   #5C2218;
+    --sp-muted:     #A87060;
+    --sp-dim:       #946050;
+    --sp-accent:    #8B3822;
+    --sp-accent-hv: #A8482A;
+    --sp-on-accent: #F4F0E3;
     /* Also update Tailwind @theme vars so bg-cave-* utilities update */
-    --color-cave-black:  #F5F0E8;
-    --color-cave-dark:   #FAF8F5;
-    --color-cave-mid:    #EDE8E0;
-    --color-cave-border: #D4C9B4;
-    --color-sand:        #2A2420;
-    --color-sand-light:  #0A0A08;
-    --color-sand-muted:  #6B5A48;
+    --color-cave-black:  #EEE9D7;
+    --color-cave-dark:   #F4F0E3;
+    --color-cave-mid:    #E3DBCA;
+    --color-cave-border: #CFCAAD;
+    --color-sand:        #8B3A22;
+    --color-sand-light:  #5C2218;
+    --color-sand-muted:  #A87060;
+}
+
+/* ── LIGHT MODE — paper wrapper background ───────────────────── */
+[data-theme="light"] body {
+    background-color: #EEE9D7;
+    background-image: url('/textures/natural-paper.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+/* Sections transparent so the body paper grain shows through */
+[data-theme="light"] #sp-main section {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
 }
 
 /* ── LANGUAGE VISIBILITY ──────────────────────────────────────── */
@@ -290,12 +305,18 @@ body {
 
 /* ── LIGHT MODE — NAVBAR ──────────────────────────────────────── */
 [data-theme="light"] #sp-nav.scrolled {
-    background: rgba(245, 240, 232, 0.88);
-    border-bottom-color: rgba(212, 201, 180, 0.6);
+    background: rgba(238, 233, 215, 0.92);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom-color: rgba(207, 202, 173, 0.65);
 }
 
 [data-theme="light"] #sp-mobile-menu {
-    background: rgba(245, 240, 232, 0.97);
+    background: rgba(238, 233, 215, 0.97);
+}
+
+[data-theme="light"] #sp-burger span {
+    background: var(--sp-heading);
 }
 
 /* ── SCROLLBAR ────────────────────────────────────────────────── */
@@ -501,6 +522,27 @@ body {
     font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
     color: var(--sp-accent); letter-spacing: 0.05em;
     margin-top: auto; padding-top: 0.8rem; border-top: 1px solid var(--sp-border);
+}
+
+/* ── GALLERY ───────────────────────────────────────────────────── */
+.sp-gallery-item { display: block; }
+
+.sp-gallery-item:hover img {
+    transform: scale(1.045);
+    filter: brightness(0.90) saturate(1.15) !important;
+}
+
+/* Text on gallery images is always light (dark photo overlay beneath) */
+.sp-gallery-label { color: #B8925A !important; }
+.sp-gallery-title  { color: #E5D9C8 !important; }
+
+@media (max-width: 640px) {
+    .sp-gallery-grid {
+        grid-template-columns: 1fr !important;
+        height: auto !important;
+    }
+    .sp-gallery-grid > div:first-child { height: 72vw !important; }
+    .sp-gallery-grid > div:last-child  { flex-direction: row !important; height: 50vw !important; }
 }
 
 /* ── VIBE GRID ─────────────────────────────────────────────────── */
@@ -781,25 +823,63 @@ body {
    (for inline-styled elements that CSS vars can't reach)
 ══════════════════════════════════════════════════════════════ */
 
-/* Section & footer backgrounds — strongest override */
-[data-theme="light"] #sp-main section {
-    background: var(--sp-bg) !important;
-}
+/* Footer background */
 [data-theme="light"] footer {
-    background: #F0EAE0 !important;
+    background-color: #E5DEC8 !important;
     border-top-color: var(--sp-border) !important;
 }
 
-/* Hero section — replace dark gradient overlay with warm cream */
+/* Hero — keep video visible, warm cream wash over it */
 [data-theme="light"] #sp-hero > div.absolute.inset-0:not(.grain-overlay) {
     background:
-        radial-gradient(ellipse 90% 70% at 50% 20%, rgba(139,99,64,0.05) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 60% at 15% 80%, rgba(139,99,64,0.03) 0%, transparent 50%),
-        linear-gradient(180deg, #EEEAE2 0%, #F5F0E8 35%, #FAF8F5 70%, #F5F0E8 100%) !important;
+        linear-gradient(180deg,
+            rgba(238,233,215,0.42) 0%,
+            rgba(238,233,215,0.28) 35%,
+            rgba(238,233,215,0.38) 70%,
+            rgba(238,233,215,0.58) 100%) !important;
 }
 
 [data-theme="light"] #sp-spotlight {
-    background: radial-gradient(ellipse at center, rgba(139,99,64,0.05) 0%, transparent 65%) !important;
+    background: radial-gradient(ellipse at center, rgba(139,58,34,0.04) 0%, transparent 65%) !important;
+}
+
+/* Section visual separation in light mode */
+[data-theme="light"] #sp-main section + section {
+    border-top: 1px solid var(--sp-border);
+}
+
+/* Experience panels keep their cinematic photo bg — don't override */
+[data-theme="light"] .sp-exp-bg { /* intentionally left alone */ }
+
+/* ── MENU PAGE — light mode ─────────────────────────────────── */
+/* Tab filter bar */
+[data-theme="light"] #sp-menu-tabs {
+    background: rgba(238,233,215,0.96) !important;
+    border-bottom-color: var(--sp-border) !important;
+}
+
+[data-theme="light"] #sp-menu-tabs .menu-tab-btn {
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: var(--sp-muted) !important;
+}
+
+[data-theme="light"] #sp-menu-tabs .menu-tab-btn.active {
+    color: var(--sp-accent) !important;
+}
+
+/* Tab content panels */
+[data-theme="light"] .menu-tab-content,
+[data-theme="light"] #tab-food,
+[data-theme="light"] #tab-drink {
+    background: transparent !important;
+}
+
+/* Category section borders inside menu */
+[data-theme="light"] .menu-tab-content section {
+    border-bottom-color: var(--sp-border) !important;
+    background: transparent !important;
+    border-top: none !important;
 }
 
 /* Inline-styled divs with dark solid backgrounds inside sections */
@@ -809,6 +889,17 @@ body {
 [data-theme="light"] #sp-main section > div[style*="background: #0A0A08"],
 [data-theme="light"] #sp-main section > div[style*="background:#0F0F0D"],
 [data-theme="light"] #sp-main section > div[style*="background: #0F0F0D"] {
+    background: transparent !important;
+}
+
+/* menu-tab-content wrappers have inline style="background:#0A0A08" */
+[data-theme="light"] [id^="tab-"][style*="background"] {
+    background: transparent !important;
+}
+
+/* section inside menu tab content with dark border-bottom */
+[data-theme="light"] [id^="tab-"] section[style*="border-bottom"] {
+    border-bottom-color: var(--sp-border) !important;
     background: transparent !important;
 }
 
@@ -852,9 +943,18 @@ body {
 
 /* ── GLASS PANEL in light mode ────────────────────────────────── */
 [data-theme="light"] .sp-glass-panel {
-    background: rgba(255,255,255,0.85) !important;
-    border-color: rgba(139,99,64,0.2) !important;
+    background: rgba(244,240,227,0.88) !important;
+    border-color: rgba(139,58,34,0.18) !important;
 }
+
+/* Ghost button border in light mode */
+[data-theme="light"] .sp-btn-ghost {
+    border-color: rgba(139,58,34,0.3);
+}
+
+/* Scrollbar in light mode */
+[data-theme="light"] ::-webkit-scrollbar-track { background: var(--sp-mid); }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: var(--sp-border); }
 
 /* Menu overlay — lighten in light mode */
 [data-theme="light"] .sp-menu-card-img-overlay {
@@ -875,6 +975,7 @@ body {
 [data-theme="light"] footer *[style*="color:#C9B99A"] { color: var(--sp-text) !important; }
 [data-theme="light"] footer *[style*="color:#3A3A35"] { color: var(--sp-dim) !important; }
 [data-theme="light"] footer *[style*="color:#B8925A"] { color: var(--sp-accent) !important; }
+[data-theme="light"] footer *[style*="color:#E5D9C8"] { color: var(--sp-heading) !important; }
 
 /* ══════════════════════════════════════════════════════════
    ADMIN DESIGN SYSTEM — scoped to body[data-panel="admin"]
@@ -1013,7 +1114,8 @@ body[data-panel="admin"] {
                      padding-right:2.25rem; }
 .adm-checkbox      { width:1rem; height:1rem; border-radius:0.25rem;
                      border:1px solid var(--adm-border); accent-color:var(--adm-primary); }
-.adm-error         { font-size:0.75rem; color:var(--adm-danger); margin-top:0.25rem; }
+.adm-error,
+.adm-field-error   { font-size:0.75rem; color:var(--adm-danger); margin-top:0.25rem; }
 
 /* Modal */
 .adm-modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.45);

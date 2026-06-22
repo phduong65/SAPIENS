@@ -1,4 +1,7 @@
-@php $route = request()->route()?->getName() ?? ''; @endphp
+@php
+    $route = request()->route()?->getName() ?? '';
+    $pendingCount = \App\Models\Reservation::where('status', 'pending')->count();
+@endphp
 
 <aside class="adm-sidebar">
     <div class="adm-brand">
@@ -17,13 +20,23 @@
                 Dashboard
             </a>
             <a href="{{ route('admin.reservations.index') }}"
-               class="adm-nav-link {{ str_starts_with($route, 'admin.reservations') ? 'active' : '' }}">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="3" y="4" width="18" height="18" rx="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
-                Reservations
+               class="adm-nav-link {{ str_starts_with($route, 'admin.reservations') ? 'active' : '' }}"
+               style="display:flex; align-items:center; justify-content:space-between;">
+                <span style="display:flex; align-items:center; gap:10px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    Reservations
+                </span>
+                @if($pendingCount > 0)
+                <span style="background:#3B82F6; color:#fff; font-size:10px; font-weight:700;
+                              border-radius:10px; padding:2px 7px; min-width:20px; text-align:center;
+                              line-height:1.5; flex-shrink:0;">
+                    {{ $pendingCount > 99 ? '99+' : $pendingCount }}
+                </span>
+                @endif
             </a>
             <a href="{{ route('admin.menu-items.index') }}"
                class="adm-nav-link {{ str_starts_with($route, 'admin.menu-items') ? 'active' : '' }}">

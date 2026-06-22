@@ -7,7 +7,7 @@
 
 {{-- Hero --}}
 <section class="relative flex items-end grain-overlay"
-         style="min-height:70vh; background-color:#0F0F0D; padding-top:80px; overflow:hidden;">
+         style="min-height:min(60vh, 560px); background-color:#0F0F0D; padding-top:80px; overflow:hidden;">
     <div class="absolute inset-0" style="background:radial-gradient(ellipse at 60% 50%, rgba(184,146,90,0.06) 0%, transparent 70%);"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-20 w-full">
         <p style="color:#B8925A; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; margin-bottom:1.5rem;" class="fade-in-up">

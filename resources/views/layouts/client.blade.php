@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
 
     <title>@yield('title', 'Sapiens House – Eatery & Drinks')</title>
     <meta name="description" content="@yield('description', 'A Modern Cave for Modern Humans. Fusion Japanese Eatery & Bistro Bar tại Tầng 4, 44 Nguyễn Huệ, Quận 1, TP.HCM.')">

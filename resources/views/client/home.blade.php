@@ -92,7 +92,7 @@
                     </svg>
                 </a>
                 <a href="{{ route('menu') }}" class="sp-btn-ghost"
-                   data-i18n="btn.explore_menu">{{ __('ui.btn.explore_menu') }}</a>
+                    data-i18n="btn.explore_menu">{{ __('ui.btn.explore_menu') }}</a>
             </div>
         </div>
 
@@ -138,14 +138,14 @@
 
                     <div style="max-width:560px;">
                         <p data-line style="color:#8C7E6A; font-size:1rem; line-height:1.95; margin-bottom:1.2rem;">
-                            {{ __('pages.intro.body_1') }}
+                            {{ __('pages.intro.body_4') }}
                         </p>
-                        <p data-line style="color:#8C7E6A; font-size:1rem; line-height:1.95; margin-bottom:1.2rem;">
+                        {{-- <p data-line style="color:#8C7E6A; font-size:1rem; line-height:1.95; margin-bottom:1.2rem;">
                             {{ __('pages.intro.body_2') }}
                         </p>
                         <p data-line style="color:#8C7E6A; font-size:1rem; line-height:1.95;">
                             {{ __('pages.intro.body_3') }}
-                        </p>
+                        </p> --}}
                     </div>
 
                     <div style="margin-top:3rem;" data-reveal>
@@ -350,7 +350,8 @@
                 <h2 class="font-display" style="font-size:clamp(2rem,5vw,3.2rem); color:#E5D9C8; line-height:1.05;">
                     {{ __('pages.menu_showcase.title') }}</h2>
             </div>
-            <a href="{{ route('menu') }}" class="sp-btn-ghost sp-btn-sm" data-reveal>{{ __('pages.menu_showcase.cta') }}</a>
+            <a href="{{ route('menu') }}" class="sp-btn-ghost sp-btn-sm"
+                data-reveal>{{ __('pages.menu_showcase.cta') }}</a>
         </div>
 
         {{-- Horizontal scroll track --}}
@@ -416,16 +417,21 @@
                     {{ __('pages.vibe.label') }}</p>
                 <h2 class="font-display"
                     style="font-size:clamp(2.5rem, 7vw, 5rem); color:#E5D9C8; line-height:0.95; max-width:700px; margin:0 auto;">
-                    {{ __('pages.vibe.title_1') }}<br><em style="color:#8C7E6A; font-style:italic;">{{ __('pages.vibe.title_2') }}</em>
+                    {{ __('pages.vibe.title_1') }}<br><em
+                        style="color:#8C7E6A; font-style:italic;">{{ __('pages.vibe.title_2') }}</em>
                 </h2>
             </div>
 
             @php
                 $vibes = [
                     ['kanji' => '集', 'title' => __('pages.vibe.gather_title'), 'text' => __('pages.vibe.gather_text')],
-                    ['kanji' => '語', 'title' => __('pages.vibe.share_title'),  'text' => __('pages.vibe.share_text')],
+                    ['kanji' => '語', 'title' => __('pages.vibe.share_title'), 'text' => __('pages.vibe.share_text')],
                     ['kanji' => '創', 'title' => __('pages.vibe.create_title'), 'text' => __('pages.vibe.create_text')],
-                    ['kanji' => '発', 'title' => __('pages.vibe.discover_title'), 'text' => __('pages.vibe.discover_text')],
+                    [
+                        'kanji' => '発',
+                        'title' => __('pages.vibe.discover_title'),
+                        'text' => __('pages.vibe.discover_text'),
+                    ],
                     ['kanji' => '属', 'title' => __('pages.vibe.belong_title'), 'text' => __('pages.vibe.belong_text')],
                     ['kanji' => '進', 'title' => __('pages.vibe.evolve_title'), 'text' => __('pages.vibe.evolve_text')],
                 ];
@@ -447,105 +453,97 @@
     {{-- ═══════════════════════════════════════════════════════════
      PHOTO GALLERY — Cinematic Space Moments
 ═══════════════════════════════════════════════════════════ --}}
-    <section style="background:#030302; padding:0;" aria-label="Gallery">
+    <section class="sp-gallery-section" style="background:#030302; padding:0; overflow:hidden;" aria-label="Gallery">
 
-        {{-- Row 1: 2 ảnh cạnh nhau --}}
-        <div style="display:flex; gap:2px; height:clamp(180px, 36vw, 560px);">
+        {{-- 1 row · col-left 1 image · col-right 2 stacked --}}
+        <div class="sp-gallery-grid"
+             style="display:grid; grid-template-columns:1.15fr 0.85fr; gap:2px;
+                    height:clamp(480px, 65vw, 820px); overflow:hidden;">
 
-            {{-- Left --}}
-            <div class="sp-gallery-item" style="flex:1.25; position:relative; overflow:hidden;">
+            {{-- COL 1 — full-height single image --}}
+            <div class="sp-gallery-item" style="position:relative; overflow:hidden; min-height:0;">
                 <img src="{{ asset('images/sapiens/z7956140953235_cba2933ce7b83badab1bbee35c332993.jpg') }}"
-                    alt="Sapiens House – An evening at the bar" loading="lazy"
-                    style="width:100%; height:100%; object-fit:cover; display:block;
-                        transition:transform 0.9s ease, filter 0.5s ease;
-                        filter:brightness(0.88) saturate(1.1);">
-                <div
-                    style="position:absolute; inset:0; pointer-events:none;
-                background:linear-gradient(to right, rgba(0,0,0,0.25) 0%, transparent 60%);">
-                </div>
-                <div
-                    style="position:absolute; bottom:0; left:0; right:0; padding:2.5rem; pointer-events:none;
-                background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 70%);">
-                    <p
-                        style="font-family:'DM Sans',sans-serif; font-size:0.6rem; letter-spacing:0.3em;
-                    text-transform:uppercase; color:#B8925A; margin-bottom:0.4rem;">
-                        {{ __('pages.gallery.bistro_label') }}</p>
-                    <p
-                        style="font-family:'PaperCrease',serif; font-size:clamp(1.2rem,2.5vw,1.8rem);
-                    color:#E5D9C8; line-height:1.1;">
-                        {{ __('pages.gallery.bistro_title') }}</p>
-                </div>
-            </div>
-
-            {{-- Right --}}
-            <div class="sp-gallery-item" style="flex:0.75; position:relative; overflow:hidden;">
-                <img src="{{ asset('images/sapiens/z7956140952723_9d27bb75ebe9eebb947726601d3c4126.jpg') }}"
-                    alt="Sapiens House – Dinner and drinks" loading="lazy"
-                    style="width:100%; height:100%; object-fit:cover; display:block;
-                        transition:transform 0.9s ease, filter 0.5s ease;
-                        filter:brightness(0.88) saturate(1.1);">
-                <div
-                    style="position:absolute; inset:0; pointer-events:none;
-                background:linear-gradient(to left, rgba(0,0,0,0.2) 0%, transparent 60%);">
-                </div>
-                <div
-                    style="position:absolute; bottom:0; left:0; right:0; padding:2rem; pointer-events:none;
-                background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 70%);">
-                    <p
-                        style="font-family:'DM Sans',sans-serif; font-size:0.6rem; letter-spacing:0.3em;
-                    text-transform:uppercase; color:#B8925A; margin-bottom:0.4rem;">
-                        The Experience</p>
-                    <p
-                        style="font-family:'PaperCrease',serif; font-size:clamp(1rem,2vw,1.5rem);
-                    color:#E5D9C8; line-height:1.1;">
-                        Fusion &<br>Cocktails</p>
+                     alt="Sapiens House – An evening at the bar" loading="lazy"
+                     style="position:absolute; inset:0; width:100%; height:100%;
+                            object-fit:cover; object-position:center 30%;
+                            transition:transform 1.1s cubic-bezier(.25,.46,.45,.94);
+                            filter:brightness(0.78) saturate(1.12);">
+                <div style="position:absolute; inset:0; pointer-events:none;
+                             background:linear-gradient(180deg,
+                                 rgba(0,0,0,0.10) 0%, transparent 35%,
+                                 rgba(0,0,0,0.20) 60%, rgba(0,0,0,0.68) 100%);"></div>
+                <div style="position:absolute; bottom:0; left:0; right:0;
+                             padding:clamp(2rem,4vw,3.5rem); pointer-events:none;">
+                    <p class="sp-gallery-label"
+                       style="font-family:'DM Sans',sans-serif; font-size:0.6rem;
+                              letter-spacing:0.38em; text-transform:uppercase;
+                              color:#B8925A; margin-bottom:0.75rem;">
+                        Sapiens House &nbsp;·&nbsp; Bistro Bar</p>
+                    <h3 class="sp-gallery-title"
+                        style="font-family:'PaperCrease',serif;
+                               font-size:clamp(1.6rem,3.5vw,3rem);
+                               color:#E5D9C8; line-height:1.02; margin:0;">
+                        {{ __('pages.gallery.bistro_title') }}</h3>
                 </div>
             </div>
 
+            {{-- COL 2 — 2 images stacked --}}
+            <div style="display:flex; flex-direction:column; gap:2px; min-height:0; overflow:hidden;">
+
+                {{-- Top --}}
+                <div class="sp-gallery-item" style="flex:1; position:relative; overflow:hidden; min-height:0;">
+                    <img src="{{ asset('images/sapiens/z7956140952723_9d27bb75ebe9eebb947726601d3c4126.jpg') }}"
+                         alt="Sapiens House – Fusion cuisine" loading="lazy"
+                         style="position:absolute; inset:0; width:100%; height:100%;
+                                object-fit:cover;
+                                transition:transform 1.1s cubic-bezier(.25,.46,.45,.94);
+                                filter:brightness(0.80) saturate(1.1);">
+                    <div style="position:absolute; inset:0; pointer-events:none;
+                                 background:linear-gradient(to top,
+                                     rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.08) 55%, transparent 100%);"></div>
+                    <div style="position:absolute; bottom:0; left:0; right:0;
+                                 padding:clamp(1.2rem,2.5vw,2rem); pointer-events:none;">
+                        <p class="sp-gallery-label"
+                           style="font-family:'DM Sans',sans-serif; font-size:0.55rem;
+                                  letter-spacing:0.3em; text-transform:uppercase;
+                                  color:#B8925A; margin-bottom:0.45rem;">
+                            {{ __('pages.gallery.bistro_label') }}</p>
+                        <p class="sp-gallery-title"
+                           style="font-family:'PaperCrease',serif;
+                                  font-size:clamp(1rem,2vw,1.7rem);
+                                  color:#E5D9C8; line-height:1.08; margin:0;">
+                            Fusion &amp; Cocktails</p>
+                    </div>
+                </div>
+
+                {{-- Bottom --}}
+                <div class="sp-gallery-item" style="flex:1; position:relative; overflow:hidden; min-height:0;">
+                    <img src="{{ asset('images/sapiens/z7956140941279_4e54adbc05cc4398df4918c7719f59ee.jpg') }}"
+                         alt="Sapiens House – Working space" loading="lazy"
+                         style="position:absolute; inset:0; width:100%; height:100%;
+                                object-fit:cover; object-position:center 40%;
+                                transition:transform 1.1s cubic-bezier(.25,.46,.45,.94);
+                                filter:brightness(0.80) saturate(1.1);">
+                    <div style="position:absolute; inset:0; pointer-events:none;
+                                 background:linear-gradient(to top,
+                                     rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.08) 55%, transparent 100%);"></div>
+                    <div style="position:absolute; bottom:0; left:0; right:0;
+                                 padding:clamp(1.2rem,2.5vw,2rem); pointer-events:none;">
+                        <p class="sp-gallery-label"
+                           style="font-family:'DM Sans',sans-serif; font-size:0.55rem;
+                                  letter-spacing:0.3em; text-transform:uppercase;
+                                  color:#B8925A; margin-bottom:0.45rem;">
+                            Working Space</p>
+                        <p class="sp-gallery-title"
+                           style="font-family:'PaperCrease',serif;
+                                  font-size:clamp(1rem,2vw,1.7rem);
+                                  color:#E5D9C8; line-height:1.08; margin:0;">
+                            A Modern Cave</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
-
-        {{-- Row 2: full-width --}}
-        <div style="margin-top:2px; height:clamp(140px, 28vw, 420px);">
-            <div class="sp-gallery-item" style="position:relative; overflow:hidden; width:100%; height:100%;">
-                <img src="{{ asset('images/sapiens/z7956140941279_4e54adbc05cc4398df4918c7719f59ee.jpg') }}"
-                    alt="Sapiens House – The space" loading="lazy"
-                    style="width:100%; height:100%; object-fit:cover; object-position:center 40%; display:block;
-                        transition:transform 0.9s ease, filter 0.5s ease;
-                        filter:brightness(0.82) saturate(1.1);">
-                <div
-                    style="position:absolute; inset:0; pointer-events:none;
-                background:linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 55%);">
-                </div>
-                <div style="position:absolute; bottom:0; left:0; right:0; padding:2.5rem; pointer-events:none;">
-                    <p
-                        style="font-family:'DM Sans',sans-serif; font-size:0.6rem; letter-spacing:0.3em;
-                    text-transform:uppercase; color:#B8925A; margin-bottom:0.4rem;">
-                        Working Space</p>
-                    <p
-                        style="font-family:'PaperCrease',serif; font-size:clamp(1.2rem,2.5vw,2rem);
-                    color:#E5D9C8; line-height:1.1;">
-                        A Modern Cave for Modern Humans</p>
-                </div>
-            </div>
-        </div>
-
-        {{-- Hover zoom effect --}}
-        <style>
-            .sp-gallery-item:hover img {
-                transform: scale(1.04);
-                filter: brightness(0.95) saturate(1.15) !important;
-            }
-
-            @media (max-width: 640px) {
-                .sp-gallery-grid {
-                    grid-template-columns: 1fr !important;
-                }
-
-                .sp-gallery-item {
-                    aspect-ratio: 4/3 !important;
-                }
-            }
-        </style>
 
     </section>
 
@@ -570,13 +568,14 @@
 
             <h2 class="font-display"
                 style="font-size:clamp(2.5rem, 7vw, 4rem); color:#E5D9C8; line-height:1.0; margin-bottom:1.2rem;">
-                {{ __('pages.reservation_cta.sub') }}<br><em style="color:#B8925A; font-style:italic;">{{ __('pages.reservation_cta.btn') }}</em>
+                {{ __('pages.reservation_cta.sub') }}<br><em
+                    style="color:#B8925A; font-style:italic;">{{ __('pages.reservation_cta.btn') }}</em>
             </h2>
 
             <p style="color:#8C7E6A; font-size:0.875rem; letter-spacing:0.1em; margin-bottom:2.5rem; line-height:1.8;">
-                Tầng 4, 44 Nguyễn Huệ · Quận 1 · TP.HCM<br>
+                {{ __('pages.reservation_cta.address') }}<br>
                 <span style="color:#3A3A35;">——</span><br>
-                Bistro Bar opens at 18:00
+                {{ __('pages.reservation_cta.bistro_open') }}
             </p>
 
             <a href="{{ route('reservation') }}" class="sp-btn-primary sp-btn-lg">

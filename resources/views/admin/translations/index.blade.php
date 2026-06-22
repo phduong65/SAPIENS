@@ -23,6 +23,46 @@
     @endforeach
 </div>
 
+{{-- Add new key --}}
+<div class="adm-card" style="margin-bottom:1.25rem;">
+    <div class="adm-card-header" style="cursor:pointer; user-select:none;"
+         onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'">
+        <span class="adm-card-title">+ Add New Key</span>
+        <span style="font-size:0.75rem; color:var(--adm-muted);">Click to expand</span>
+    </div>
+    <div style="display:none; padding:1.25rem; border-top:1px solid var(--adm-border);">
+        <form method="POST" action="{{ route('admin.translations.add-key') }}">
+            @csrf
+            <input type="hidden" name="group" value="{{ $group }}">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:0.75rem; align-items:end;">
+                <div>
+                    <label style="display:block; font-size:0.75rem; color:var(--adm-muted); margin-bottom:0.375rem; font-weight:500;">
+                        Key <span style="opacity:0.6;">(e.g. section.my_label)</span>
+                    </label>
+                    <input type="text" name="key" required
+                           placeholder="section.key_name"
+                           pattern="[a-zA-Z0-9_.]+"
+                           class="adm-input" style="font-family:monospace; font-size:0.8125rem;">
+                </div>
+                @foreach($locales as $locale)
+                <div>
+                    <label style="display:block; font-size:0.75rem; color:var(--adm-muted); margin-bottom:0.375rem; font-weight:500;">
+                        {{ strtoupper($locale) }} value
+                    </label>
+                    <input type="text" name="values[{{ $locale }}]"
+                           class="adm-input" style="font-size:0.8125rem;">
+                </div>
+                @endforeach
+                <div>
+                    <button type="submit" class="adm-btn adm-btn-primary" style="white-space:nowrap;">
+                        Add Key
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <form method="POST" action="{{ route('admin.translations.update') }}">
     @csrf
     <input type="hidden" name="group" value="{{ $group }}">

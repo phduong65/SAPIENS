@@ -2,30 +2,29 @@
 
 // Color maps: dark hex → light replacement (for inline-styled elements)
 var DARK_TEXT_MAP = {
-    '#E5D9C8': '#0A0A08',   // headings
-    '#C9B99A': '#2A2420',   // body text
-    '#8C7E6A': '#6B5A48',   // muted
-    '#3A3A35': '#4A3F35',   // dim
-    '#B8925A': '#8B6340',   // accent
+    '#E5D9C8': '#5C2218',   // headings → dark brick
+    '#C9B99A': '#8B3A22',   // body text → brick red
+    '#8C7E6A': '#A87060',   // muted → terracotta muted
+    '#3A3A35': '#946050',   // dim → warm dim
+    '#B8925A': '#8B3822',   // accent → brick accent
 };
 var LIGHT_TEXT_MAP = {
-    '#0A0A08': '#E5D9C8',
-    '#2A2420': '#C9B99A',
-    '#6B5A48': '#8C7E6A',
-    '#4A3F35': '#3A3A35',
-    '#8B6340': '#B8925A',
+    '#5C2218': '#E5D9C8',
+    '#8B3A22': '#C9B99A',
+    '#A87060': '#8C7E6A',
+    '#946050': '#3A3A35',
+    '#8B3822': '#B8925A',
 };
 
 function patchInlineColors(theme) {
     var map = theme === 'light' ? DARK_TEXT_MAP : LIGHT_TEXT_MAP;
-    // Target all elements with inline style= containing a color we know
     Object.keys(map).forEach(function(from) {
         var to = map[from];
-        // color property
         document.querySelectorAll('[style*="color:' + from + '"]').forEach(function(el) {
+            // Gallery text sits on dark photo overlays — always keep white/gold
+            if (el.closest('.sp-gallery-item') || el.closest('.sp-gallery-section')) return;
             el.style.color = to;
         });
-        // Store original so toggling back works — use data attr
     });
 }
 
@@ -41,8 +40,7 @@ function patchHeroGradient(theme) {
     if (theme === 'light') {
         overlayDiv.dataset.origBg = overlayDiv.dataset.origBg || overlayDiv.style.background;
         overlayDiv.style.background =
-            'radial-gradient(ellipse 90% 70% at 50% 20%, rgba(139,99,64,0.05) 0%, transparent 65%), ' +
-            'linear-gradient(180deg, #EEEAE2 0%, #F5F0E8 35%, #FAF8F5 70%, #F5F0E8 100%)';
+            'linear-gradient(180deg, rgba(238,233,215,0.42) 0%, rgba(238,233,215,0.28) 35%, rgba(238,233,215,0.38) 70%, rgba(238,233,215,0.58) 100%)';
     } else {
         if (overlayDiv.dataset.origBg) {
             overlayDiv.style.background = overlayDiv.dataset.origBg;
@@ -59,14 +57,40 @@ function patchSectionBackgrounds(theme) {
         if (isDark) {
             if (theme === 'light') {
                 sec.dataset.origBg = sec.dataset.origBg || sec.style.background || sec.style.backgroundColor;
-                sec.style.setProperty('background', 'var(--sp-bg)', 'important');
+                // Remove inline dark background entirely — CSS makes sections transparent
+                // so the body's paper-grain texture (background-image) shows through.
+                sec.style.removeProperty('background');
+                sec.style.removeProperty('background-color');
             } else {
+                sec.style.removeProperty('background-color');
                 if (sec.dataset.origBg) {
-                    sec.style.background = sec.dataset.origBg;
-                    sec.style.removeProperty('background');
                     sec.style.background = sec.dataset.origBg;
                 }
             }
+        }
+    });
+}
+
+// Logo dark variants (white → brick red #5C2218) for light mode
+var LOGO_DARK_MAP = {
+    'SAPIENS HOUSE_LOGO_HORIZONTAL (NO TAGLINE).png': 'SAPIENS HOUSE_LOGO_HORIZONTAL (NO TAGLINE)_DARK.png',
+    'SAPIENS HOUSE_LOGO_HORIZONTAL.png':              'SAPIENS HOUSE_LOGO_HORIZONTAL_DARK.png',
+    'SAPIENS HOUSE_LOGO_W TEXTURE.png':               'SAPIENS HOUSE_LOGO_W TEXTURE_DARK.png',
+    'SAPIENS HOUSE_LOGO_WITH TEXTURE.png':            'SAPIENS HOUSE_LOGO_WITH TEXTURE_DARK.png',
+};
+
+function patchLogos(theme) {
+    document.querySelectorAll('img[src*="SAPIENS HOUSE_LOGO"]').forEach(function(img) {
+        if (!img.dataset.origSrc) img.dataset.origSrc = img.getAttribute('src');
+        var origSrc = img.dataset.origSrc;
+        if (theme === 'light') {
+            Object.keys(LOGO_DARK_MAP).forEach(function(key) {
+                if (origSrc.indexOf(key) !== -1) {
+                    img.src = origSrc.replace(key, LOGO_DARK_MAP[key]);
+                }
+            });
+        } else {
+            img.src = origSrc;
         }
     });
 }
@@ -78,6 +102,7 @@ function applyTheme(theme) {
     patchHeroGradient(theme);
     patchSectionBackgrounds(theme);
     patchInlineColors(theme);
+    patchLogos(theme);
 
     // Sync icon visibility (both desktop + mobile toggles)
     document.querySelectorAll('#sp-theme-toggle, #sp-theme-toggle-mobile').forEach(function(btn) {

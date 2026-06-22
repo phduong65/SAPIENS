@@ -36,6 +36,61 @@
                class="hover:underline">
                 {{ __('pages.reservation_page.maps_link') }}
             </a>
+
+            {{-- Venue Booking --}}
+            <div style="margin-top:3rem; padding-top:2.5rem; border-top:1px solid #2E2E2A;">
+                <p style="color:#B8925A; font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase; margin-bottom:1rem;">
+                    Venue Booking
+                </p>
+                <h2 class="font-display"
+                    style="font-size:1.5rem; color:#E5D9C8; line-height:1.1; margin-bottom:0.75rem;">
+                    <span class="lang-en">Private Events &amp; Full Venue Hire</span>
+                    <span class="lang-vi">Thuê Toàn Bộ Không Gian</span>
+                </h2>
+                <p style="color:#8C7E6A; font-size:0.875rem; line-height:1.8; margin-bottom:1.25rem;">
+                    <span class="lang-en">Looking to host a private dinner, corporate event or celebration? Book the entire Sapiens House — capacity for up to 36 guests, with a custom catering menu tailored to your occasion.</span>
+                    <span class="lang-vi">Bạn muốn tổ chức tiệc riêng, sự kiện doanh nghiệp hay buổi kỷ niệm đặc biệt? Thuê toàn bộ Sapiens House — sức chứa tối đa 36 khách, kèm thực đơn catering được thiết kế riêng cho sự kiện của bạn.</span>
+                </p>
+
+                <div style="border:1px solid #2E2E2A; padding:1.25rem 1.5rem; margin-bottom:1.25rem; display:flex; flex-direction:column; gap:0.6rem;">
+                    <div style="display:flex; align-items:center; gap:0.75rem;">
+                        <span style="color:#B8925A; font-size:0.95rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline; vertical-align:middle;">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </span>
+                        <span style="color:#C9B99A; font-size:0.8rem;">
+                            <span class="lang-en">Up to 36 guests · Full venue exclusive</span>
+                            <span class="lang-vi">Tối đa 36 khách · Độc quyền toàn bộ không gian</span>
+                        </span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:0.75rem;">
+                        <span style="color:#B8925A; font-size:0.95rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline; vertical-align:middle;">
+                                <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+                            </svg>
+                        </span>
+                        <span style="color:#C9B99A; font-size:0.8rem;">
+                            <span class="lang-en">Custom catering menu included</span>
+                            <span class="lang-vi">Thực đơn catering thiết kế riêng</span>
+                        </span>
+                    </div>
+                </div>
+
+                <a href="mailto:events@sapienshouse.vn"
+                   style="display:inline-flex; align-items:center; gap:0.5rem;
+                          color:#B8925A; font-size:0.8rem; letter-spacing:0.08em;
+                          border:1px solid rgba(184,146,90,0.4); padding:0.65rem 1.25rem;
+                          transition:all 0.2s ease;"
+                   onmouseover="this.style.borderColor='#B8925A'; this.style.color='#D4A96A';"
+                   onmouseout="this.style.borderColor='rgba(184,146,90,0.4)'; this.style.color='#B8925A';">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    events@sapienshouse.vn
+                </a>
+            </div>
         </div>
 
         {{-- Right: Form --}}
@@ -155,11 +210,6 @@
                             <textarea name="special_request" class="form-input" rows="2"
                                       placeholder="Trang trí bàn, yêu cầu đặc biệt..."></textarea>
                         </div>
-                        <div>
-                            <label class="form-label">{{ __('pages.reservation_page.field_note') }}</label>
-                            <textarea name="note" class="form-input" rows="2"
-                                      placeholder="Bất kỳ điều gì bạn muốn cho chúng tôi biết..."></textarea>
-                        </div>
                     </div>
                 </div>
 
@@ -225,6 +275,37 @@
         });
     }
 
+    // ── Block slot check on date change ──────────────────────────
+    const dateInput = form.querySelector('[name=reservation_date]');
+    const timeSelect = form.querySelector('[name=reservation_time]');
+    const ALL_TIMES = ['18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30','00:00','00:30'];
+
+    async function refreshAvailableTimes(date) {
+        if (!date) return;
+        try {
+            const res = await fetch('/reservation/blocked-slots?date=' + date, {
+                headers: { 'Accept': 'application/json' }
+            });
+            const data = await res.json();
+            const blocked = data.blocked || [];
+
+            Array.from(timeSelect.options).forEach(function (opt) {
+                if (!opt.value) return;
+                const isBlocked = blocked.includes(opt.value);
+                opt.disabled = isBlocked;
+                opt.textContent = isBlocked ? opt.value + ' — Unavailable' : opt.value;
+                if (isBlocked && opt.selected) {
+                    timeSelect.value = '';
+                }
+            });
+        } catch (e) { /* silently ignore — don't block the form */ }
+    }
+
+    dateInput.addEventListener('change', function () {
+        refreshAvailableTimes(this.value);
+    });
+    if (dateInput.value) refreshAvailableTimes(dateInput.value);
+
     form.addEventListener('submit', async function (e) {
         e.preventDefault();
         clearErrors();
@@ -240,7 +321,7 @@
         }
 
         try {
-            const res = await fetch('{{ route("reservation.store") }}', {
+            const res = await fetch('/reservation', {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': csrfToken,
@@ -248,6 +329,19 @@
                 },
                 body: formData,
             });
+
+            if (res.status === 419) {
+                generalError.textContent = 'Phiên làm việc đã hết hạn. Vui lòng tải lại trang và thử lại.';
+                generalError.style.display = 'block';
+                return;
+            }
+
+            const contentType = res.headers.get('content-type') || '';
+            if (!contentType.includes('application/json')) {
+                generalError.textContent = 'Lỗi máy chủ. Vui lòng thử lại sau.';
+                generalError.style.display = 'block';
+                return;
+            }
 
             const data = await res.json();
 

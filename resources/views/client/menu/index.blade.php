@@ -21,7 +21,7 @@
 </section>
 
 {{-- Tab Filter --}}
-<div class="sticky top-[72px] z-40 px-6 py-4 flex justify-center gap-6"
+<div id="sp-menu-tabs" class="sticky top-[72px] z-40 px-6 py-4 flex justify-center gap-6"
      style="background:rgba(8,8,6,0.95); backdrop-filter:blur(20px); border-bottom:1px solid #1E1E1B;">
     <button class="menu-tab-btn sp-nav-link text-xs active" data-tab="food">{{ __('pages.menu_page.filter_food') }}</button>
     <button class="menu-tab-btn sp-nav-link text-xs" data-tab="drink">{{ __('pages.menu_page.filter_drink') }}</button>

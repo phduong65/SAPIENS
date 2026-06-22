@@ -63,18 +63,8 @@
                             </td>
                             <td class="adm-td">
                                 <div style="display:flex; gap:0.5rem;">
-                                    <button onclick="openEditModal({{ $item->id }}, @json(
-                                        $item->only([
-                                            'menu_category_id',
-                                            'name_en',
-                                            'name_vi',
-                                            'description_en',
-                                            'description_vi',
-                                            'price',
-                                            'is_featured',
-                                            'is_active',
-                                            'sort_order',
-                                        ])))"
+                                    <button onclick="openEditModal({{ $item->id }}, JSON.parse(this.dataset.item))"
+                                        data-item="{{ json_encode($item->only(['menu_category_id','name_en','name_vi','description_en','description_vi','price','is_featured','is_active','sort_order'])) }}"
                                         class="adm-btn adm-btn-ghost adm-btn-sm">
                                         Edit
                                     </button>
